@@ -1,0 +1,25 @@
+﻿
+<div class="k-d-flex k-justify-content-center" style="padding-top: 54px;">
+    <div class="k-w-300">
+        <label for="dropdownlist">DropDownList:</label>
+        @(Html.Kendo().DropDownList()
+            .Name("dropdownlist")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .Filter("startswith")
+            .BindTo(new List<SelectListItem>()
+            {
+                new SelectListItem() {
+                    Text = "Item1", Value = "1"
+                },
+                new SelectListItem() {
+                    Text = "Item2", Value = "2"
+                },
+                new SelectListItem() {
+                    Text = "Item3", Value = "3"
+                }
+            })            
+            .HtmlAttributes(new { style = "width: 100%" })
+        )
+    </div>
+</div>

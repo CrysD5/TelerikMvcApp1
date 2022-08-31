@@ -1,0 +1,65 @@
+﻿<div id="RosterDDL" class="report">
+    <h4>Roster Reports: </h4>
+
+    <input id="rostReps" aria-label="rostReps" />
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#rostReps").kendoDropDownTree({
+            placeholder: "Select an Option...",
+            dataUrlField: "LinksTo",
+            dataSource: [
+                { text: "Full Summary" },
+                {
+                    text: "Foundation Blocks Summary", items: [
+                        { text: "Block 1" },
+                        { text: "Block 2" },
+                        { text: "Block 3" },
+                        { text: "Block 4" },
+                        { text: "Block 5" },
+                        { text: "Block 6" }
+                    ]
+                },
+                { text: "CAT Score Details" },
+                { text: "Summative ePortfolio" },
+                { text: "Clinical Basic Core Evaluation" },
+                { text: "Clinical Advanced Core Evaluation" },
+                { text: "Clinical Honors Report" },
+                {
+                    text: "Professional Learning Plan (PLP)", items: [
+                        { text: "Block 1" },
+                        { text: "Block 2" },
+                        { text: "Block 3" },
+                        { text: "Block 4" },
+                        { text: "Block 5" },
+                        { text: "Block 6" }
+                    ]
+                },
+                { text: "Attendance" },
+                { text: "USMLE Scores" },
+                {
+                    text: "IQ Self & Peer Feedback", items: [
+                        { text: "Block1" },
+                        { text: "Block2" },
+                        { text: "Block3" },
+                        { text: "Block4" },
+                        { text: "Block5" }
+                    ]
+                },
+                { text: "SAMI Attendance" },
+                { text: "Advising", LinksTo: "https://med-ed.case.edu/SocietyDeanAdvisingAdmin" },
+                { text: "MD Requirements Registrar Report", LinksTo: "https://data.case.edu/#/site/CWRUAnalytics/views/SOM-MDGraduationAnalysis/MDGradRequirements?:iid=1" },
+                { text: "Specialty Advisor List Google Doc", LinksTo: "https://docs.google.com/spreadsheets/d/13Pb8mTpPibfMOk_vxOmIFE8rF95Cn8rfN548xVM2vFQ/edit?usp=sharing" },
+                { text: "CAS", LinksTo: "https://putamen.case.edu/CAS/" },
+                { text: "Easel", LinksTo: "https://med-ed.case.edu/Easel/" },
+                { text: "NBME", LinksTo: "https://www.mynbme.org/servicesportal/s/login/?ec=302&startURL=%2Fservicesportal%2Fs%2Fscore-reports" },
+                { text: "Amount of Credit Report for the Graduating Class", LinksTo: "https://data.case.edu/" }
+            ]
+
+        });
+
+    }
+        </script>

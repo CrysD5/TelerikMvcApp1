@@ -1,0 +1,20 @@
+﻿<div id="gradyrs">
+    @(Html.Kendo().DropDownList()
+          .Name("gradYears")
+          .DataTextField("GradYear")
+          .DataValueField("GradYear")
+          .OptionLabel("Select a Graduate Year...")
+          .DataSource(source =>
+          {
+              source.Read(read =>
+              {
+                  read.Action("GetGyrDDL", "Home");
+              });
+
+          })
+          .HtmlAttributes(new { style = "width: 100%" })
+    //.Events(e => { e.Change("onGyrChange"); }
+    //  )
+
+    )
+</div>

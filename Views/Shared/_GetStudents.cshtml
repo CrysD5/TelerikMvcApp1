@@ -1,0 +1,21 @@
+﻿
+<div id="students">
+    @(Html.Kendo().DropDownList()
+          .Name("students")
+          .DataTextField("students")
+          //.DataValueField("")
+          .OptionLabel("Select a Student...")
+          .DataSource(source =>
+          {
+              source.Read(read =>
+              {
+                  read.Action("GetStudentsDDL", "Home");
+              });
+
+          })
+          .HtmlAttributes(new { style = "width: 100%" })
+    //.Events(e => { e.Change("onGyrChange"); }
+    //  )
+
+    )
+</div>
