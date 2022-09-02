@@ -12,7 +12,7 @@
             <h2>Societies</h2>
             <p>
                 @(Html.Kendo().DropDownList()
-                  .Name("societies")
+                  .Name("society")
                   .DataTextField("Society")
                   .DataValueField("Society")
                   .OptionLabel("Select a Society...")
@@ -25,6 +25,7 @@
 
                   })
                   .HtmlAttributes(new { style = "width: 100%" })
+                  .BindTo(((System.Collections.IEnumerable)ViewData["society"]))
             //.Events(e => { e.Change("onGyrChange"); }
             //  )
 
@@ -50,11 +51,11 @@
                         .Name("ClassOf")
                         //.HtmlAttributes(new { style = "width:100%" })
                         .OptionLabel("Select a Graduate Year...")
-                        .DataTextField("Year")
-                        .DataValueField("Value")
+                        .DataTextField("classYear")
+                        .DataValueField("classYear")
                         .BindTo(((System.Collections.IEnumerable)ViewData["classYear"]))
                         .Events(x => x.Change("changeGradYear"))
-                        //.HtmlAttributes(new { value = "Select Grad Year", Style = "float: left, width:90px; text-align:center" })
+                        .HtmlAttributes(new { value = "Select Grad Year", Style = "float: left, width:90px; text-align:center" })
                         )
             </p>           
 
@@ -63,6 +64,27 @@
         <div class="col-md-3">
             <h2>Students </h2>
             @(Html.Kendo().DropDownList().
+                        Name("students")
+                        .HtmlAttributes(new { value = "Student", Style = "float: center, width:90px; text-align:center" })
+                        .OptionLabel("Select a Student Name... ")
+                        .DataTextField("Name")
+                        .DataValueField("Value")
+                        .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("CascadingGetStudents", "Home")
+                                    .Data("GetYear")
+                                    .Data("GetSociety");
+                            })
+                            .ServerFiltering(true);
+                        })
+                        .Events(x => x.Change("changeStudent"))
+                        .Enable(true)
+                        .CascadeFrom("gradYear")
+                        )
+
+            @*@(Html.Kendo().DropDownList().
                         Name("students")
                         //.HtmlAttributes(new { value = "Student", Style = "float: center, width:90px; text-align:center" })
                         .OptionLabel("Select a Student Name... ")
@@ -81,7 +103,7 @@
                         .Events(x => x.Change("changeStudent"))
                         .Enable(true)
                         .AutoBind(true)
-                        .CascadeFrom("GradYear"))
+                        .CascadeFrom("GradYear"))*@
         </div>
         
         <div class="selectedStudentOptions">
@@ -116,19 +138,19 @@
 <script>
     function GetYear() {
         return {
-            GradYear: $("#ClassOf").data("kendoDropDownList").value()
+            gradYear: $("#ClassOf").data("kendoDropDownList").value()
         };
-        Console.log(GradYear);
+        Console.log(gradYear);
     }
 
     function GetSociety() {
         return {
-            Society: $("#societies").data("kendoDropDownList").value()
+            society: $("#society").data("kendoDropDownList").value()           
         };
-        Console.log(Society);
+        Console.log(society);
     }
     function changeSociety() {
-        var getSoc = $("#societies").data("kendoDropDownList");
+        var getSoc = $("#society").data("kendoDropDownList");
         var society = getSoc.value();
         $.ajax({
             url: '@Url.Action("SaveSociety", "Home")',
@@ -138,8 +160,7 @@
             dataType: 'json'
         });
     }
-    function changeGradYear() {
-        
+    function changeGradYear() {        
         var getYear = $("#ClassOf").data("kendoDropDownList");
         var gradYear = getYear.value();
         $.ajax({
@@ -152,7 +173,7 @@
             dataType: 'json'
         });
 
-        $("#students").data("kendoDropDownList").dataSource.read();
+        $("#students").data("kendoDropDownList").dataSource.read(); 
     }
 
     function changeStudent() {
