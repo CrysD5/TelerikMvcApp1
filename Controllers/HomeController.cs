@@ -46,20 +46,44 @@ namespace TelerikMvcApp1.Controllers
 
         public JsonResult GetSocDDL()
         {
-            var society = regEnt.vw_Matri_Grad_Dates
-                .Where(a => a.campuscode == "cwru")
-                .Where(a => a.Prog_status == "AC" || a.Prog_status == "LA")
-                .GroupBy(a => a.advisor_society)
-                .Select(a => a.FirstOrDefault())
-                .Select(a => new { Society = a.advisor_society })
-                .Take(6)
-                .Distinct()       
-                .ToList();
-            society.Add(new { Society = "All" });
-            ViewData["society"] = society;
-            //returns list of societies
-            return Json(society, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var society = new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "All" },
+                    new SelectListItem { Text = "Satcher" },
+                    new SelectListItem { Text = "Robbins" },
+                    new SelectListItem { Text = "Wearn" },
+                    new SelectListItem { Text = "Blackwell" },
+                    new SelectListItem { Text = "Geiger" },
+                    new SelectListItem { Text = "Gerberding" }
+                };
+                ViewData["society"] = society;
+
+                return Json(society, JsonRequestBehavior.AllowGet);
+            }
+            catch 
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
         }
+
+        //public JsonResult GetSocDDL()
+        //{
+        //    var society = regEnt.vw_Matri_Grad_Dates
+        //        .Where(a => a.campuscode == "cwru")
+        //        .Where(a => a.Prog_status == "AC" || a.Prog_status == "LA")
+        //        .GroupBy(a => a.advisor_society)
+        //        .Select(a => a.FirstOrDefault())
+        //        .Select(a => new { Society = a.advisor_society })
+        //        .Take(6)
+        //        .Distinct()       
+        //        .ToList();
+        //    society.Add(new { Society = "All" });
+        //    ViewData["society"] = society;
+        //    //returns list of societies
+        //    return Json(society, JsonRequestBehavior.AllowGet);
+        //}
 
         //public JsonResult GetGyrDDL()
         //{
@@ -96,11 +120,18 @@ namespace TelerikMvcApp1.Controllers
             return classYear;
         }
 
-        public JsonResult CascadingGetStudents(string classYear)
+        public JsonResult CascadingGetStudents(string classYear, string society)
         {
-            //if (Session["gradYear"] != null)
-           string gradYear = string.Empty;
-            gradYear = Session["gradYear"].ToString();
+            //classYear = "2022";
+            if (Session["gradYear"] != null)
+                classYear = Session["gradYear"].ToString();
+
+                //classYear = string.Empty;
+                //classYear = Session["gradYear"].ToString();
+                               
+            //string society = string.Empty;
+            if (Session["society"] != null)
+            society = Session["society"].ToString();
 
             //if (gradYear.Contains("LOA") || gradYear.Contains("PHD"))
             //{
@@ -118,7 +149,8 @@ namespace TelerikMvcApp1.Controllers
             //}
             
                 var gradsByYear = regEnt.vw_Matri_Grad_Dates
-               .Where(x => x.exp_grad_year == gradYear)
+               .Where(x => x.gyr == classYear)
+               .Where(x => x.advisor_society.Contains(society))
                .OrderBy(x => x.Emplid)
                .Select(x => x.Emplid)
                .ToList();

@@ -13,8 +13,8 @@
             <p>
                 @(Html.Kendo().DropDownList()
                   .Name("society")
-                  .DataTextField("Society")
-                  .DataValueField("Society")
+                  .DataTextField("Text")
+                  .DataValueField("Text")
                   .OptionLabel("Select a Society...")
                   .DataSource(source =>
                   {
@@ -25,8 +25,12 @@
 
                   })
                   .HtmlAttributes(new { style = "width: 100%" })
-                  .BindTo(((System.Collections.IEnumerable)ViewData["society"]))
-            //.Events(e => { e.Change("onGyrChange"); }
+                  .Events(e =>
+                  {
+                      e.Change("changeSociety");
+                  })
+            //.BindTo(((System.Collections.IEnumerable)ViewData["society"]))
+
             //  )
 
             )
@@ -48,7 +52,7 @@
             <h2>Grad Years</h2>
             <p>
                 @(Html.Kendo().DropDownList()
-                        .Name("ClassOf")
+                        .Name("classYear")
                         //.HtmlAttributes(new { style = "width:100%" })
                         .OptionLabel("Select a Graduate Year...")
                         .DataTextField("classYear")
@@ -81,7 +85,7 @@
                         })
                         .Events(x => x.Change("changeStudent"))
                         .Enable(true)
-                        .CascadeFrom("gradYear")
+                        //.CascadeFrom("gradYear")
                         )
 
             @*@(Html.Kendo().DropDownList().
@@ -138,7 +142,7 @@
 <script>
     function GetYear() {
         return {
-            gradYear: $("#ClassOf").data("kendoDropDownList").value()
+            gradYear: $("#classYear").data("kendoDropDownList").value()
         };
         Console.log(gradYear);
     }
@@ -152,6 +156,9 @@
     function changeSociety() {
         var getSoc = $("#society").data("kendoDropDownList");
         var society = getSoc.value();
+
+        console.log(society);
+
         $.ajax({
             url: '@Url.Action("SaveSociety", "Home")',
             type: 'POST',
@@ -161,8 +168,11 @@
         });
     }
     function changeGradYear() {        
-        var getYear = $("#ClassOf").data("kendoDropDownList");
+        var getYear = $("#classYear").data("kendoDropDownList");
         var gradYear = getYear.value();
+
+        console.log(gradYear)
+
         $.ajax({
             url: '@Url.Action("SaveGradYear", "Home")',
             type: 'POST',
