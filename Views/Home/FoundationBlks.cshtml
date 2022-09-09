@@ -7,7 +7,8 @@
             .DataTextField("Text")
             .DataValueField("Value")
             .Filter("startswith")
-            .BindTo(new List<SelectListItem>()
+            .BindTo(
+            new List<SelectListItem>()
             {
                 new SelectListItem() {
                     Text = "Item1", Value = "1"

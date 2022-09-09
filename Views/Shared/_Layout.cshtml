@@ -13,11 +13,17 @@
 	<script src="https://cdn.kendostatic.com/2022.2.802/js/kendo.aspnetmvc.min.js"></script>
 	<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
 </head>
+
 <body class="k-content">
+    <style>
+        ul{
+            justify-content:flex-end;
+        }
+    </style>
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid d-flex justify-content-between p-0">
-            <h1 class="navbar-brand d-flex align-items-center">Project Title</h1>
-           @* <h1 class="selectedReportView">Full Summary</h1>*@
+        <div class="container-fluid d-flex justify-content-">
+            <h1 class="navbar-brand d-flex align-items-center">Society Deans System</h1>
+
             <button id="configure" class="k-rpanel-toggle k-button k-button-md k-rounded-md k-icon-button k-button-solid-primary btn-toggle">
                 <span class="k-button-icon k-icon k-i-menu"></span>
             </button>
@@ -33,7 +39,7 @@
                 items.Add().Text("Item 1");
                 items.Add().Text("Item 2");
                 items.Add().Text("Item 3");
-                items.Add().Text("Disabled item").Enabled(false);
+                
             })
         )
     </div>

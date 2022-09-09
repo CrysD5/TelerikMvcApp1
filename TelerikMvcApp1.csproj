@@ -110,6 +110,30 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\CanvasAPI\CanvasAPI.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanvasAPI.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CanvasAPI\CanvasAPI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanvasAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CanvasAPI\CanvasAPI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanvasAPI.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CanvasAPI\v_studentsAll.cs">
+      <DependentUpon>CanvasAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CanvasAPI\v_StudentsSOM.cs">
+      <DependentUpon>CanvasAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CanvasAPI\v_StudentsSOMwithReducedFee.cs">
+      <DependentUpon>CanvasAPI.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Registrar\AcademicPlan.cs">
       <DependentUpon>Registrar.tt</DependentUpon>
     </Compile>
@@ -536,6 +560,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Data\CanvasAPI\CanvasAPI.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CanvasAPI.edmx</DependentUpon>
+      <LastGenOutput>CanvasAPI.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\CanvasAPI\CanvasAPI.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CanvasAPI.edmx</DependentUpon>
+      <LastGenOutput>CanvasAPI.cs</LastGenOutput>
+    </Content>
     <Content Include="Data\Registrar\Registrar.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Registrar.edmx</DependentUpon>
@@ -569,6 +603,13 @@
     </EntityDeploy>
     <Content Include="Data\Registrar\Registrar.edmx.diagram">
       <DependentUpon>Registrar.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Data\CanvasAPI\CanvasAPI.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CanvasAPI.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\CanvasAPI\CanvasAPI.edmx.diagram">
+      <DependentUpon>CanvasAPI.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Images\200.png" />
@@ -632,6 +673,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\CATscores\" />
+    <Folder Include="Views\DDL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

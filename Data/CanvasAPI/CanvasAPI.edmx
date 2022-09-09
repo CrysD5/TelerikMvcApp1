@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CanvasAPIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CanvasAPI.dbo.v_studentsAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_studentsAll">
+          <Key>
+            <PropertyRef Name="Emplid" />
+            <PropertyRef Name="reduced_fee" />
+          </Key>
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Last_Name" Type="char" MaxLength="30" />
+          <Property Name="First_Name" Type="char" MaxLength="30" />
+          <Property Name="Middle_Name" Type="char" MaxLength="30" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="Ethnic_Grp_CD" Type="varchar" MaxLength="100" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="studentname" Type="varchar" MaxLength="98" />
+          <Property Name="Email_Addr" Type="char" MaxLength="70" />
+          <Property Name="emaddr" Type="char" MaxLength="16" />
+          <Property Name="mdyr" Type="char" MaxLength="4" />
+          <Property Name="gyr" Type="char" MaxLength="4" />
+          <Property Name="campuscode" Type="char" MaxLength="5" />
+          <Property Name="Acad_Prog" Type="char" MaxLength="5" />
+          <Property Name="desk" Type="char" MaxLength="10" />
+          <Property Name="advisor_name" Type="char" MaxLength="70" />
+          <Property Name="advisor_email" Type="char" MaxLength="70" />
+          <Property Name="advisor_campus_id" Type="char" MaxLength="16" />
+          <Property Name="Prog_status" Type="char" MaxLength="4" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="char" MaxLength="30" />
+          <Property Name="reduced_fee" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="gender_identity" Type="varchar" MaxLength="50" />
+          <Property Name="gender_pronoun" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CanvasAPI.dbo.v_StudentsSOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_StudentsSOM">
+          <Key>
+            <PropertyRef Name="gyr" />
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="case_id" Type="char" MaxLength="16" />
+          <Property Name="Last_Name" Type="char" MaxLength="30" />
+          <Property Name="First_Name" Type="char" MaxLength="30" />
+          <Property Name="Middle_Name" Type="char" MaxLength="30" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="char" MaxLength="30" />
+          <Property Name="gyr" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="seyear" Type="varchar" MaxLength="4" />
+          <Property Name="mdyr" Type="char" MaxLength="4" />
+          <Property Name="campuscode" Type="char" MaxLength="5" />
+          <Property Name="stpict" Type="char" MaxLength="100" />
+          <Property Name="advisor_name" Type="char" MaxLength="70" />
+          <Property Name="advisor_email" Type="char" MaxLength="70" />
+          <Property Name="advisor_campus_id" Type="char" MaxLength="16" />
+          <Property Name="advisor_society" Type="char" MaxLength="50" />
+          <Property Name="advisor_society_id" Type="int" />
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="desk" Type="char" MaxLength="10" />
+          <Property Name="Acad_Prog" Type="char" MaxLength="5" />
+          <Property Name="Prog_status" Type="char" MaxLength="4" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="dcode" Type="varchar(max)" />
+          <Property Name="stsound" Type="char" MaxLength="100" />
+          <Property Name="Phone" Type="char" MaxLength="24" />
+          <Property Name="Extension" Type="char" MaxLength="6" />
+          <Property Name="aamc_id" Type="char" MaxLength="10" />
+          <Property Name="ethnicity" Type="varchar" MaxLength="100" />
+          <Property Name="Email_Addr" Type="char" MaxLength="70" />
+          <Property Name="gender_identity" Type="varchar" MaxLength="50" />
+          <Property Name="gender_pronoun" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CanvasAPI.dbo.v_StudentsSOMwithReducedFee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_StudentsSOMwithReducedFee">
+          <Key>
+            <PropertyRef Name="gyr" />
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="case_id" Type="char" MaxLength="16" />
+          <Property Name="Last_Name" Type="char" MaxLength="30" />
+          <Property Name="First_Name" Type="char" MaxLength="30" />
+          <Property Name="Middle_Name" Type="char" MaxLength="30" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="char" MaxLength="30" />
+          <Property Name="gyr" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="seyear" Type="varchar" MaxLength="4" />
+          <Property Name="mdyr" Type="char" MaxLength="4" />
+          <Property Name="campuscode" Type="char" MaxLength="5" />
+          <Property Name="stpict" Type="char" MaxLength="100" />
+          <Property Name="advisor_name" Type="char" MaxLength="70" />
+          <Property Name="advisor_email" Type="char" MaxLength="70" />
+          <Property Name="advisor_campus_id" Type="char" MaxLength="16" />
+          <Property Name="advisor_society" Type="char" MaxLength="50" />
+          <Property Name="advisor_society_id" Type="int" />
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="desk" Type="char" MaxLength="10" />
+          <Property Name="Acad_Prog" Type="char" MaxLength="5" />
+          <Property Name="Prog_status" Type="char" MaxLength="4" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="dcode" Type="varchar(max)" />
+          <Property Name="stsound" Type="char" MaxLength="100" />
+          <Property Name="Phone" Type="char" MaxLength="24" />
+          <Property Name="Extension" Type="char" MaxLength="6" />
+          <Property Name="aamc_id" Type="char" MaxLength="10" />
+          <Property Name="ethnicity" Type="varchar" MaxLength="100" />
+          <Property Name="Email_Addr" Type="char" MaxLength="70" />
+          <Property Name="gender_identity" Type="varchar" MaxLength="50" />
+          <Property Name="gender_pronoun" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="CanvasAPIModelStoreContainer">
+          <EntitySet Name="v_studentsAll" EntityType="Self.v_studentsAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[v_studentsAll].[Emplid] AS [Emplid], 
+[v_studentsAll].[Last_Name] AS [Last_Name], 
+[v_studentsAll].[First_Name] AS [First_Name], 
+[v_studentsAll].[Middle_Name] AS [Middle_Name], 
+[v_studentsAll].[Sex] AS [Sex], 
+[v_studentsAll].[Ethnic_Grp_CD] AS [Ethnic_Grp_CD], 
+[v_studentsAll].[BIRTHDATE] AS [BIRTHDATE], 
+[v_studentsAll].[studentname] AS [studentname], 
+[v_studentsAll].[Email_Addr] AS [Email_Addr], 
+[v_studentsAll].[emaddr] AS [emaddr], 
+[v_studentsAll].[mdyr] AS [mdyr], 
+[v_studentsAll].[gyr] AS [gyr], 
+[v_studentsAll].[campuscode] AS [campuscode], 
+[v_studentsAll].[Acad_Prog] AS [Acad_Prog], 
+[v_studentsAll].[desk] AS [desk], 
+[v_studentsAll].[advisor_name] AS [advisor_name], 
+[v_studentsAll].[advisor_email] AS [advisor_email], 
+[v_studentsAll].[advisor_campus_id] AS [advisor_campus_id], 
+[v_studentsAll].[Prog_status] AS [Prog_status], 
+[v_studentsAll].[CW_PREF_FIRST_NAME] AS [CW_PREF_FIRST_NAME], 
+[v_studentsAll].[reduced_fee] AS [reduced_fee], 
+[v_studentsAll].[gender_identity] AS [gender_identity], 
+[v_studentsAll].[gender_pronoun] AS [gender_pronoun]
+FROM [dbo].[v_studentsAll] AS [v_studentsAll]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_StudentsSOM" EntityType="Self.v_StudentsSOM" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[v_StudentsSOM].[case_id] AS [case_id], 
+[v_StudentsSOM].[Last_Name] AS [Last_Name], 
+[v_StudentsSOM].[First_Name] AS [First_Name], 
+[v_StudentsSOM].[Middle_Name] AS [Middle_Name], 
+[v_StudentsSOM].[CW_PREF_FIRST_NAME] AS [CW_PREF_FIRST_NAME], 
+[v_StudentsSOM].[gyr] AS [gyr], 
+[v_StudentsSOM].[seyear] AS [seyear], 
+[v_StudentsSOM].[mdyr] AS [mdyr], 
+[v_StudentsSOM].[campuscode] AS [campuscode], 
+[v_StudentsSOM].[stpict] AS [stpict], 
+[v_StudentsSOM].[advisor_name] AS [advisor_name], 
+[v_StudentsSOM].[advisor_email] AS [advisor_email], 
+[v_StudentsSOM].[advisor_campus_id] AS [advisor_campus_id], 
+[v_StudentsSOM].[advisor_society] AS [advisor_society], 
+[v_StudentsSOM].[advisor_society_id] AS [advisor_society_id], 
+[v_StudentsSOM].[Emplid] AS [Emplid], 
+[v_StudentsSOM].[desk] AS [desk], 
+[v_StudentsSOM].[Acad_Prog] AS [Acad_Prog], 
+[v_StudentsSOM].[Prog_status] AS [Prog_status], 
+[v_StudentsSOM].[Sex] AS [Sex], 
+[v_StudentsSOM].[BIRTHDATE] AS [BIRTHDATE], 
+[v_StudentsSOM].[dcode] AS [dcode], 
+[v_StudentsSOM].[stsound] AS [stsound], 
+[v_StudentsSOM].[Phone] AS [Phone], 
+[v_StudentsSOM].[Extension] AS [Extension], 
+[v_StudentsSOM].[aamc_id] AS [aamc_id], 
+[v_StudentsSOM].[ethnicity] AS [ethnicity], 
+[v_StudentsSOM].[Email_Addr] AS [Email_Addr], 
+[v_StudentsSOM].[gender_identity] AS [gender_identity], 
+[v_StudentsSOM].[gender_pronoun] AS [gender_pronoun]
+FROM [dbo].[v_StudentsSOM] AS [v_StudentsSOM]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_StudentsSOMwithReducedFee" EntityType="Self.v_StudentsSOMwithReducedFee" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[v_StudentsSOMwithReducedFee].[case_id] AS [case_id], 
+[v_StudentsSOMwithReducedFee].[Last_Name] AS [Last_Name], 
+[v_StudentsSOMwithReducedFee].[First_Name] AS [First_Name], 
+[v_StudentsSOMwithReducedFee].[Middle_Name] AS [Middle_Name], 
+[v_StudentsSOMwithReducedFee].[CW_PREF_FIRST_NAME] AS [CW_PREF_FIRST_NAME], 
+[v_StudentsSOMwithReducedFee].[gyr] AS [gyr], 
+[v_StudentsSOMwithReducedFee].[seyear] AS [seyear], 
+[v_StudentsSOMwithReducedFee].[mdyr] AS [mdyr], 
+[v_StudentsSOMwithReducedFee].[campuscode] AS [campuscode], 
+[v_StudentsSOMwithReducedFee].[stpict] AS [stpict], 
+[v_StudentsSOMwithReducedFee].[advisor_name] AS [advisor_name], 
+[v_StudentsSOMwithReducedFee].[advisor_email] AS [advisor_email], 
+[v_StudentsSOMwithReducedFee].[advisor_campus_id] AS [advisor_campus_id], 
+[v_StudentsSOMwithReducedFee].[advisor_society] AS [advisor_society], 
+[v_StudentsSOMwithReducedFee].[advisor_society_id] AS [advisor_society_id], 
+[v_StudentsSOMwithReducedFee].[Emplid] AS [Emplid], 
+[v_StudentsSOMwithReducedFee].[desk] AS [desk], 
+[v_StudentsSOMwithReducedFee].[Acad_Prog] AS [Acad_Prog], 
+[v_StudentsSOMwithReducedFee].[Prog_status] AS [Prog_status], 
+[v_StudentsSOMwithReducedFee].[Sex] AS [Sex], 
+[v_StudentsSOMwithReducedFee].[BIRTHDATE] AS [BIRTHDATE], 
+[v_StudentsSOMwithReducedFee].[dcode] AS [dcode], 
+[v_StudentsSOMwithReducedFee].[stsound] AS [stsound], 
+[v_StudentsSOMwithReducedFee].[Phone] AS [Phone], 
+[v_StudentsSOMwithReducedFee].[Extension] AS [Extension], 
+[v_StudentsSOMwithReducedFee].[aamc_id] AS [aamc_id], 
+[v_StudentsSOMwithReducedFee].[ethnicity] AS [ethnicity], 
+[v_StudentsSOMwithReducedFee].[Email_Addr] AS [Email_Addr], 
+[v_StudentsSOMwithReducedFee].[gender_identity] AS [gender_identity], 
+[v_StudentsSOMwithReducedFee].[gender_pronoun] AS [gender_pronoun]
+FROM [dbo].[v_StudentsSOMwithReducedFee] AS [v_StudentsSOMwithReducedFee]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CanvasAPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="v_studentsAll">
+          <Key>
+            <PropertyRef Name="Emplid" />
+            <PropertyRef Name="reduced_fee" />
+          </Key>
+          <Property Name="Emplid" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Ethnic_Grp_CD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="studentname" Type="String" MaxLength="98" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Addr" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="emaddr" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="mdyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="gyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="campuscode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Acad_Prog" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="desk" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_name" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_email" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_campus_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Prog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="reduced_fee" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="gender_identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender_pronoun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="v_StudentsSOM">
+          <Key>
+            <PropertyRef Name="gyr" />
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="case_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="gyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="seyear" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="mdyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="campuscode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="stpict" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_name" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_email" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_campus_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society_id" Type="Int32" />
+          <Property Name="Emplid" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desk" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Acad_Prog" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Prog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="dcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="stsound" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="Extension" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="aamc_id" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ethnicity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Addr" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="gender_identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender_pronoun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="v_StudentsSOMwithReducedFee">
+          <Key>
+            <PropertyRef Name="gyr" />
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="case_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="gyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="seyear" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="mdyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="campuscode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="stpict" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_name" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_email" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_campus_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society_id" Type="Int32" />
+          <Property Name="Emplid" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desk" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Acad_Prog" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Prog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="dcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="stsound" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="Extension" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="aamc_id" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ethnicity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Addr" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="gender_identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender_pronoun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="CanvasAPIEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="v_studentsAll" EntityType="Self.v_studentsAll" />
+          <EntitySet Name="v_StudentsSOM" EntityType="Self.v_StudentsSOM" />
+          <EntitySet Name="v_StudentsSOMwithReducedFee" EntityType="Self.v_StudentsSOMwithReducedFee" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CanvasAPIModelStoreContainer" CdmEntityContainer="CanvasAPIEntities1">
+          <EntitySetMapping Name="v_studentsAll">
+            <EntityTypeMapping TypeName="CanvasAPIModel.v_studentsAll">
+              <MappingFragment StoreEntitySet="v_studentsAll">
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Ethnic_Grp_CD" ColumnName="Ethnic_Grp_CD" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="Email_Addr" ColumnName="Email_Addr" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="mdyr" ColumnName="mdyr" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="campuscode" ColumnName="campuscode" />
+                <ScalarProperty Name="Acad_Prog" ColumnName="Acad_Prog" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+                <ScalarProperty Name="advisor_email" ColumnName="advisor_email" />
+                <ScalarProperty Name="advisor_campus_id" ColumnName="advisor_campus_id" />
+                <ScalarProperty Name="Prog_status" ColumnName="Prog_status" />
+                <ScalarProperty Name="CW_PREF_FIRST_NAME" ColumnName="CW_PREF_FIRST_NAME" />
+                <ScalarProperty Name="reduced_fee" ColumnName="reduced_fee" />
+                <ScalarProperty Name="gender_identity" ColumnName="gender_identity" />
+                <ScalarProperty Name="gender_pronoun" ColumnName="gender_pronoun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_StudentsSOM">
+            <EntityTypeMapping TypeName="CanvasAPIModel.v_StudentsSOM">
+              <MappingFragment StoreEntitySet="v_StudentsSOM">
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="CW_PREF_FIRST_NAME" ColumnName="CW_PREF_FIRST_NAME" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="seyear" ColumnName="seyear" />
+                <ScalarProperty Name="mdyr" ColumnName="mdyr" />
+                <ScalarProperty Name="campuscode" ColumnName="campuscode" />
+                <ScalarProperty Name="stpict" ColumnName="stpict" />
+                <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+                <ScalarProperty Name="advisor_email" ColumnName="advisor_email" />
+                <ScalarProperty Name="advisor_campus_id" ColumnName="advisor_campus_id" />
+                <ScalarProperty Name="advisor_society" ColumnName="advisor_society" />
+                <ScalarProperty Name="advisor_society_id" ColumnName="advisor_society_id" />
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="Acad_Prog" ColumnName="Acad_Prog" />
+                <ScalarProperty Name="Prog_status" ColumnName="Prog_status" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="dcode" ColumnName="dcode" />
+                <ScalarProperty Name="stsound" ColumnName="stsound" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="aamc_id" ColumnName="aamc_id" />
+                <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+                <ScalarProperty Name="Email_Addr" ColumnName="Email_Addr" />
+                <ScalarProperty Name="gender_identity" ColumnName="gender_identity" />
+                <ScalarProperty Name="gender_pronoun" ColumnName="gender_pronoun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_StudentsSOMwithReducedFee">
+            <EntityTypeMapping TypeName="CanvasAPIModel.v_StudentsSOMwithReducedFee">
+              <MappingFragment StoreEntitySet="v_StudentsSOMwithReducedFee">
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="CW_PREF_FIRST_NAME" ColumnName="CW_PREF_FIRST_NAME" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="seyear" ColumnName="seyear" />
+                <ScalarProperty Name="mdyr" ColumnName="mdyr" />
+                <ScalarProperty Name="campuscode" ColumnName="campuscode" />
+                <ScalarProperty Name="stpict" ColumnName="stpict" />
+                <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+                <ScalarProperty Name="advisor_email" ColumnName="advisor_email" />
+                <ScalarProperty Name="advisor_campus_id" ColumnName="advisor_campus_id" />
+                <ScalarProperty Name="advisor_society" ColumnName="advisor_society" />
+                <ScalarProperty Name="advisor_society_id" ColumnName="advisor_society_id" />
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="Acad_Prog" ColumnName="Acad_Prog" />
+                <ScalarProperty Name="Prog_status" ColumnName="Prog_status" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="dcode" ColumnName="dcode" />
+                <ScalarProperty Name="stsound" ColumnName="stsound" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="aamc_id" ColumnName="aamc_id" />
+                <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+                <ScalarProperty Name="Email_Addr" ColumnName="Email_Addr" />
+                <ScalarProperty Name="gender_identity" ColumnName="gender_identity" />
+                <ScalarProperty Name="gender_pronoun" ColumnName="gender_pronoun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -2,12 +2,89 @@
     ViewBag.Title = "Home Page";
 }
 
+@*<style>
+
+
+    .sidepanel {
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        height: 250px;
+        top: 0;
+        left: 0;
+        background-color: #00304E;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+        .sidepanel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .sidepanel a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidepanel .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #00304E;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+    }
+
+        .openbtn:hover {
+            background-color: #00304EC7;
+        }
+</style>*@
+
 <div class="placeholders">
+
     <div class="row d-flex justify-content-start">
         <div class="col-md-2 mb-3 placeholder">
-            <img class="img-fluid " alt="200x200" src="~/Images/200.png">
+
+            @*<div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <div id="RosterDDL" class="report">
+                    <h4>Roster Reports: </h4>
+                    <input id="rostReps" aria-label="rostReps" />
+                </div>
+                <div id="IndividualDDL" class="report">
+                    <h4>Individual Student Data:</h4>
+                        @(Html.Kendo().DropDownList()
+                            .Name("studentInfoDDL")
+                            .DataTextField("Text")
+                            .DataValueField("Text")
+                            .DataSource(source =>
+                            {
+                                source.Read(read => { 
+                                    read.Action("GetIndiStudentInfo", "Home"); 
+                                });
+                            })
+                            .OptionLabel("Select an Option...")
+                        )
+                </div>
+            </div>
+
+            <button class="openbtn" onclick="openNav()">☰ Reports</button>*@
+
         </div>
-        <div class="col-md-3">
+
+        <div class="col-md-3" >
 
             <h2>Societies</h2>
             <p>
@@ -16,6 +93,7 @@
                   .DataTextField("Text")
                   .DataValueField("Text")
                   .OptionLabel("Select a Society...")
+                  .HtmlAttributes(new { value = "Select a Society", Style = "float: left, width:90px; text-align:center" })
                   .DataSource(source =>
                   {
                       source.Read(read =>
@@ -24,31 +102,18 @@
                       });
 
                   })
-                  .HtmlAttributes(new { style = "width: 100%" })
+                  //.HtmlAttributes(new { style = "width: 100%" })
                   .Events(e =>
                   {
                       e.Change("changeSociety");
                   })
-            //.BindTo(((System.Collections.IEnumerable)ViewData["society"]))
-
-            //  )
 
             )
             </p>
 
-            @*<p>
-                @(Html.Kendo()
-                .Button()
-                .Name("PrimaryButton")
-                .Content("Primary Button")
-                .Size(ComponentSize.Medium)
-                .Rounded(Rounded.Medium)
-                .ThemeColor(ThemeColor.Primary)
-                .HtmlAttributes(new { @class = "textButton" } ))
-            </p>*@
         </div>
-      
-        <div class="col-md-3">
+
+        <div class="col-md-3" id="gyr">
             <h2>Grad Years</h2>
             <p>
                 @(Html.Kendo().DropDownList()
@@ -61,11 +126,11 @@
                         .Events(x => x.Change("changeGradYear"))
                         .HtmlAttributes(new { value = "Select Grad Year", Style = "float: left, width:90px; text-align:center" })
                         )
-            </p>           
+            </p>
 
         </div>
 
-        <div class="col-md-3">
+        <div id="studentDDL" class="col-md-3">
             <h2>Students </h2>
             @(Html.Kendo().DropDownList().
                         Name("students")
@@ -87,33 +152,40 @@
                         .Enable(true)
                         //.CascadeFrom("gradYear")
                         )
-
             @*@(Html.Kendo().DropDownList().
-                        Name("students")
-                        //.HtmlAttributes(new { value = "Student", Style = "float: center, width:90px; text-align:center" })
-                        .OptionLabel("Select a Student Name... ")
-                        .DataTextField("Name")
-                        .DataValueField("Value")
-                        .DataSource(source =>
-                        {
-                            source.Read(read =>
-                            {
-                                read.Action("CascadingGetStudents", "Home")
-                                    .Data("GetYear");
-                                    //.Data("GetSociety");
-                            })
-                            .ServerFiltering(true);
-                        })
-                        .Events(x => x.Change("changeStudent"))
-                        .Enable(true)
-                        .AutoBind(true)
-                        .CascadeFrom("GradYear"))*@
+                Name("students")
+                //.HtmlAttributes(new { value = "Student", Style = "float: center, width:90px; text-align:center" })
+                .OptionLabel("Select a Student Name... ")
+                .DataTextField("Name")
+                .DataValueField("Value")
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("CascadingGetStudents", "Home")
+                            .Data("GetYear");
+                            //.Data("GetSociety");
+                    })
+                    .ServerFiltering(true);
+                })
+                .Events(x => x.Change("changeStudent"))
+                .Enable(true)
+                .AutoBind(true)
+                .CascadeFrom("GradYear"))*@
         </div>
-        
-        <div class="selectedStudentOptions">
-            
 
-            @*<h3 class="studentOptionHeaders">
+
+
+
+
+
+
+    </div>
+
+    <div class="selectedStudentOptions">
+
+
+        @*<h3 class="studentOptionHeaders">
             Western Reserve<span style="font-size:small">2</span> Curriculum Core Competencies
         </h3>
         <h4 class="studentOptionHeaders"><b>Overview of Summative ePortfolio</b></h4>
@@ -124,22 +196,43 @@
             .Name("studentStatusOptions")
             .Items(x =>
             {
+                x.Add().Text("Student Information")
+                    .Selected(true)
+                    .Content(@<text>
+                                <div class="studDet" style="display:grid; grid-template-columns:auto auto; gap:10px; padding:10px;">
+                                    <div class="studPic" style="padding: 20px 0;">
+                                        <img src="https://www.w3schools.com/html/img_girl.jpg" style="height:275px; width:auto; ">
+                                    </div>
+                                    <div class="studInfo" style="padding: 20px 0;">
+                                        <h3>Personal Information</h3>
+                                        
+                                            <ul>
+                                                <li>Student Name</li>
+                                                <li>Student Society</li>
+                                                <li>Student Expected Grad Year</li>
+                                            </ul>
+                                        
+                                    </div>
+                                </div>
+                              </text>);
+
                 x.Add().Text("Full Summary Details")
                     .LoadContentFrom(Url.Content("~/Home/ReportDetails"));
 
-                x.Add().Text("Foundation Blocks Summary Details")
+                x.Add().Text("Electives Roster")
                     .LoadContentFrom(Url.Content("~/Home/FoundationBlks"));
 
-                x.Add().Text("CAT Score Details")
+                x.Add().Text("Dean Notes")
                     .LoadContentFrom(Url.Content("~/Home/CATscores"));
             })
         )
-        </div>
     </div>
+
 
 </div>
 
 <script>
+
     function GetYear() {
         return {
             gradYear: $("#classYear").data("kendoDropDownList").value()
@@ -149,7 +242,7 @@
 
     function GetSociety() {
         return {
-            society: $("#society").data("kendoDropDownList").value()           
+            society: $("#society").data("kendoDropDownList").value()
         };
         Console.log(society);
     }
@@ -167,7 +260,7 @@
             dataType: 'json'
         });
     }
-    function changeGradYear() {        
+    function changeGradYear() {
         var getYear = $("#classYear").data("kendoDropDownList");
         var gradYear = getYear.value();
 
@@ -183,7 +276,7 @@
             dataType: 'json'
         });
 
-        $("#students").data("kendoDropDownList").dataSource.read(); 
+        $("#students").data("kendoDropDownList").dataSource.read();
     }
 
     function changeStudent() {
@@ -199,8 +292,10 @@
             },
             dataType: 'json',
         });
-       
+
     }
+
+
 
     @*function changeLeaveStudent() {
         var stuLeave = $("#leaveOfAbsenceList").data("kendoDropDownList").value;
@@ -213,9 +308,115 @@
             },
             dataType: 'json',
         }); }*@
+
+    
     
 </script>
+<script>
+    function openNav() {
+        document.getElementById("mySidepanel").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+
+    $(document).ready(function () {
+
+        $("#rostReps").kendoDropDownTree({
+            placeholder: "Select an Option...",
+            dataUrlField: "LinksTo",
+            dataSource: [
+                { text: "Full Summary" },
+                {
+                    text: "Foundation Blocks Summary", items: [
+                        { text: "Block 1" },
+                        { text: "Block 2" },
+                        { text: "Block 3" },
+                        { text: "Block 4" },
+                        { text: "Block 5" },
+                        { text: "Block 6" }
+                    ]
+                },
+                { text: "CAT Score Details" },
+                { text: "Summative ePortfolio" },
+                { text: "Clinical Basic Core Evaluation" },
+                { text: "Clinical Advanced Core Evaluation" },
+                { text: "Clinical Honors Report" },
+                {
+                    text: "Professional Learning Plan (PLP)", items: [
+                        { text: "Block 1" },
+                        { text: "Block 2" },
+                        { text: "Block 3" },
+                        { text: "Block 4" },
+                        { text: "Block 5" },
+                        { text: "Block 6" }
+                    ]
+                },
+                { text: "Attendance" },
+                { text: "USMLE Scores" },
+                {
+                    text: "IQ Self & Peer Feedback", items: [
+                        { text: "Block1" },
+                        { text: "Block2" },
+                        { text: "Block3" },
+                        { text: "Block4" },
+                        { text: "Block5" }
+                    ]
+                },
+                { text: "SAMI Attendance" },
+                { text: "Advising", LinksTo: "https://med-ed.case.edu/SocietyDeanAdvisingAdmin" },
+                { text: "MD Requirements Registrar Report", LinksTo: "https://data.case.edu/#/site/CWRUAnalytics/views/SOM-MDGraduationAnalysis/MDGradRequirements?:iid=1" },
+                { text: "Specialty Advisor List Google Doc", LinksTo: "https://docs.google.com/spreadsheets/d/13Pb8mTpPibfMOk_vxOmIFE8rF95Cn8rfN548xVM2vFQ/edit?usp=sharing" },
+                { text: "CAS", LinksTo: "https://putamen.case.edu/CAS/" },
+                { text: "Easel", LinksTo: "https://med-ed.case.edu/Easel/" },
+                { text: "NBME", LinksTo: "https://www.mynbme.org/servicesportal/s/login/?ec=302&startURL=%2Fservicesportal%2Fs%2Fscore-reports" },
+                { text: "Amount of Credit Report for the Graduating Class", LinksTo: "https://data.case.edu/" }
+            ],
+            change: function (e) {
+                var rRep = this.text();
+                // $('.reportView').show();
+                @* jQuery.ajax({
+                    url: '@Url.Action("SaveReport", "Home")',
+                    method: 'POST',
+                    cache: false,
+                    data: { rRep: rRep },
+                    success: function (data) {
+                        console.log("Success!? " + rRep);
+                    }
+                }).done(
+                    function () {
+                        refreshPage();
+                    }
+                );*@
+
+            }
+        });
+
+
+        @* $("#studentInfoDDL").change(function () {
+            var iRep = $("#studentInfoDDL")[0].value;
+            jQuery.ajax({
+                url: '@Url.Action("SaveIndiReport", "Home")',
+                method: 'POST',
+                cache: false,
+                data: { iRep: iRep },
+                success: function (data) {
+                    console.log("Success!? " + iRep);
+                }
+            }).done(
+                function () {
+                    refreshPage();
+                }
+            );
+        });
+    });*@
+</script>
 <style>
+    ul{
+        list-style-type: none;
+    }
+    
     .kendoLists {
         padding-top: 15px;
         margin-left: 350px;
