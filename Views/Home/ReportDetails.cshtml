@@ -1,25 +1,53 @@
 ﻿<div class="row">
-    <div class="col-12">
-        @(Html.Kendo().Grid<TelerikMvcApp1.Models.OrderViewModel>()
-            .Name("grid")
-            .Columns(columns =>
+    @*<div class="col-12">
+            @(Html.Kendo().Grid<TelerikMvcApp1.Models.OrderViewModel>()
+                .Name("grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.ContactName).Title("Student");
+                    columns.Bound(p => p.OrderID).Title("One")public ActionResult fsReportDetails()
             {
-                columns.Bound(p => p.OrderID).Filterable(false);
-                columns.Bound(p => p.Freight);
-                columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
-                columns.Bound(p => p.ShipName);
-                columns.Bound(p => p.ShipCity);
-            })
-            .Pageable()
-            .Sortable()
-            .Scrollable()
-            .Filterable()
-            .HtmlAttributes(new { style = "height:550px;" })
-            .DataSource(dataSource => dataSource
-                .Ajax()
-                .PageSize(20)
-                .Read(read => read.Action("Orders_Read", "Grid"))
+                return PartialView();
+            }
+            public ActionResult fsElectivesRoster()
+            {
+                return PartialView();
+            }
+            public ActionResult fsDeanNotes()
+            {
+                return PartialView();
+            }
+                    columns.Bound(p => p.Freight).Title("Two");
+                    columns.Bound(p => p.OrderDate).Title("Three").Format("{0:MM/dd/yyyy}");
+                    columns.Bound(p => p.ShipName).Title("Four");
+                    columns.Bound(p => p.ShipCity).Title("Five");
+                })
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .HtmlAttributes(new { style = "height:550px;" })
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .PageSize(20)
+                    .Read(read => read.Action("Orders_Read", "Grid"))
+                )
             )
+        </div>*@
+    <div class="col-12">
+        @(Html.Kendo().Grid<TelerikMvcApp1.Models.ReportViewModel>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.ContactName).Width(140);
+            columns.Bound(c => c.ContactTitle).Width(190);
+            columns.Bound(c => c.CompanyName);
+            columns.Bound(c => c.Country).Width(110);
+        })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("ReportView_Read", "Grid"))
         )
+    )
     </div>
 </div>

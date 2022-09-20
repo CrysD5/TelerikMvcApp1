@@ -1,0 +1,291 @@
+﻿@model TelerikMvcApp1.Models.SubMenu
+
+
+
+
+
+@*<style>
+        #sidebar {
+            width: 225px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            z-index: 1;
+            height: calc(100% - 74px);
+            min-width: 218px;
+            background-color: rgba(0, 48, 78, 1);
+            float: left;
+            flex: none;
+            position: fixed;
+            top: 74px;
+            margin: 0%;
+            padding: 20px 0 20px 20px;
+            vertical-align: top;
+        }
+
+        h4 {
+            color: #ece5e5;
+        }
+
+        .k-treeview-item {
+            color: black;
+        }
+
+        #mCSB_1:after {
+            background-color: grey;
+        }
+
+        .pageLink {
+            color: black;
+        }
+
+            .pageLink:hover {
+                background-color: whitesmoke;
+                color: black;
+            }
+
+        .topLevelLink {
+            color: lightgray;
+            background-color: rgba(0, 48, 78, 1);
+            border-style: solid;
+            border-radius: 0 !important;
+            border-width: 3px;
+            border-color: lightgrey;
+            font-weight: bold;
+        }
+
+            .topLevelLink:hover {
+                color: white;
+            }
+
+        .parentLink {
+            color: black;
+            font-weight: bold;
+        }
+
+            .parentLink:hover {
+                color: black;
+                background-color: whitesmoke;
+            }
+
+        .collapseDiv {
+            -webkit-transition: margin .01s ease;
+            -moz-transition: margin .01s ease;
+            -o-transition: margin .01s ease;
+            transition: margin .01s ease;
+        }
+
+        .mCS-menuBar.mCSB_scrollTools .mCSB_draggerRail {
+            background-color: white;
+            width: 10px;
+        }
+
+        .mCS-menuBar.mCSB_inside > .mCSB_container {
+            margin-right: 10px;
+        }
+
+        .mCS-menuBar.mCSB_scrollTools {
+            width: 10px;
+        }
+
+            .mCS-menuBar.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+                background-color: #2C3E50;
+                width: 10px;
+            }
+
+        .subCollapseDiv {
+            -webkit-transition: margin .01s ease;
+            -moz-transition: margin .01s ease;
+            -o-transition: margin .01s ease;
+            transition: margin .01s ease;
+        }
+
+        .currentPage {
+            background-color: #428bca;
+            color: white;
+            border-radius: 0px !important;
+        }
+
+        .menuShrinkArrow {
+            float: right;
+        }
+
+
+        a:hover {
+            color: inherit;
+        }
+
+        .divShrinkMenu {
+            background-color: rgba(0, 48, 78, 1);
+            width: 100%;
+            color: lightgray;
+            font-size: 19px;
+            height: 35px;
+            cursor: pointer;
+            border: solid;
+            border-width: 4px;
+            border-color: rgb(215, 215, 215);
+        }
+
+
+        .panel-wrap {
+            /*max-width: 968px;*/
+            background-color: #f5f5f5;
+            border: 1px solid #e5e5e5;
+            position: relative;
+        }
+
+        #main-content {
+            overflow: hidden;
+            margin: 0;
+            padding: 20px;
+            min-height: 580px;
+            vertical-align: top;
+            justify-content: center;
+            display: flex;
+        }
+
+        .report {
+            margin: 0 0 20px;
+            border-radius: 3px;
+        }
+
+            .report div {
+                padding: 10px;
+                min-height: 50px;
+                text-align: center;
+                background-color: rgba(0, 48, 78, 1);
+            }
+
+            .report h4 {
+                width: auto;
+                margin: 0 0 5px;
+                font-size: 1.2em;
+                background-color: rgba(0, 48, 78, 1);
+            }
+    </style>*@
+
+<div id="RosterDDL" class="report">
+    <h4>Roster Reports: </h4>
+
+    <input id="rostReps" aria-label="rostReps" />
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#rostReps").kendoDropDownTree({
+            placeholder: "Select an Option...",
+            dataUrlField: "LinksTo",
+            dataSource: [
+                { text: "Full Summary" },
+                {
+                    text: "Foundation Blocks Summary", items: [
+                        { text: "Block 1" },
+                        { text: "Block 2" },
+                        { text: "Block 3" },
+                        { text: "Block 4" },
+                        { text: "Block 5" },
+                        { text: "Block 6" }
+                    ]
+                },
+                { text: "CAT Score Details" },
+                { text: "Summative ePortfolio" },
+                { text: "Clinical Basic Core Evaluation" },
+                { text: "Clinical Advanced Core Evaluation" },
+                { text: "Clinical Honors Report" },
+                {
+                    text: "Professional Learning Plan (PLP)", items: [
+                        { text: "Block 1" },
+                        { text: "Block 2" },
+                        { text: "Block 3" },
+                        { text: "Block 4" },
+                        { text: "Block 5" },
+                        { text: "Block 6" }
+                    ]
+                },
+                { text: "Attendance" },
+                { text: "USMLE Scores" },
+                {
+                    text: "IQ Self & Peer Feedback", items: [
+                        { text: "Block1" },
+                        { text: "Block2" },
+                        { text: "Block3" },
+                        { text: "Block4" },
+                        { text: "Block5" }
+                    ]
+                },
+                { text: "SAMI Attendance" },
+                { text: "Advising", LinksTo: "https://med-ed.case.edu/SocietyDeanAdvisingAdmin" },
+                { text: "MD Requirements Registrar Report", LinksTo: "https://data.case.edu/#/site/CWRUAnalytics/views/SOM-MDGraduationAnalysis/MDGradRequirements?:iid=1" },
+                { text: "Specialty Advisor List Google Doc", LinksTo: "https://docs.google.com/spreadsheets/d/13Pb8mTpPibfMOk_vxOmIFE8rF95Cn8rfN548xVM2vFQ/edit?usp=sharing" },
+                { text: "CAS", LinksTo: "https://putamen.case.edu/CAS/" },
+                { text: "Easel", LinksTo: "https://med-ed.case.edu/Easel/" },
+                { text: "NBME", LinksTo: "https://www.mynbme.org/servicesportal/s/login/?ec=302&startURL=%2Fservicesportal%2Fs%2Fscore-reports" },
+                { text: "Amount of Credit Report for the Graduating Class", LinksTo: "https://data.case.edu/" }
+            ],
+            change: function (e) {
+                var getRep = $("#rostReps").data("kendoDropDownList");
+                var rRep = getRep.value();
+                $('#studentDDL').show();
+                $.ajax({
+                    url: '@Url.Action("SaveReport", "Home")',
+                    type: 'POST',
+                    method: 'POST',
+                    data: {
+                        'rostReps': rRep
+                    },
+                    dataType: 'json'
+                });
+
+            }
+
+        });
+
+
+        @*$("#studentInfoDDL").change(function () {
+            var iRep = $("#studentInfoDDL")[0].value;
+            jQuery.ajax({
+                url: '@Url.Action("SaveIndiReport", "Home")',
+                method: 'POST',
+                cache: false,
+                data: { iRep: iRep },
+                success: function (data) {
+                    console.log("Success!? " + iRep );
+                }
+            }).done(
+                function () {
+                    refreshPage();
+                }
+            );
+        });*@
+    });
+
+</script>
+
+
+
+<div id="IndividualDDL" class="report">
+    <h4>Individual Student Data:</h4>
+    @(Html.Kendo().DropDownList()
+    .Name("studentInfoDDL")
+    .DataTextField("Text")
+    .DataValueField("Text")
+    .DataSource(source =>
+    {
+        source.Read(read => { read.Action("GetIndiStudentInfo", "Menu"); });
+    })
+    .OptionLabel("Select an Option...")
+    )
+
+
+</div>
+
+
+
+
+
