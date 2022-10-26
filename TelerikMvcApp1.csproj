@@ -154,6 +154,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\UserSession.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -180,6 +181,75 @@
     </Compile>
     <Compile Include="Data\CanvasAPI\v_StudentsSOMwithReducedFee.cs">
       <DependentUpon>CanvasAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\AssessmentBlockComponent.cs">
+      <DependentUpon>Easel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\AssessmentBlockComponentDetail.cs">
+      <DependentUpon>Easel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\AssessmentBlockComponentStudent.cs">
+      <DependentUpon>Easel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\AssessmentGradeCode.cs">
+      <DependentUpon>Easel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\AssessmentGradeStudent.cs">
+      <DependentUpon>Easel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\Easel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Easel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\Easel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Easel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Easel\Easel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Easel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Category.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Customer.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Employee.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Northwind.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Northwind.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Northwind.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Northwind.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Northwind.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Order.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\OrderDetail.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Product.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Shipper.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Northwind\Supplier.cs">
+      <DependentUpon>Northwind.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Registrar\AcademicPlan.cs">
       <DependentUpon>Registrar.tt</DependentUpon>
@@ -586,10 +656,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\DeanNotesModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
-    <Compile Include="Models\ReportViewModel.cs" />
-    <Compile Include="Models\StudentsModel.cs" />
+    <Compile Include="Models\StudentDetails.cs" />
     <Compile Include="Models\SubMenu.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -618,6 +690,26 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CanvasAPI.edmx</DependentUpon>
       <LastGenOutput>CanvasAPI.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Easel\Easel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Easel.edmx</DependentUpon>
+      <LastGenOutput>Easel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Easel\Easel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Easel.edmx</DependentUpon>
+      <LastGenOutput>Easel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Northwind\Northwind.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Northwind.edmx</DependentUpon>
+      <LastGenOutput>Northwind.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Northwind\Northwind.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Northwind.edmx</DependentUpon>
+      <LastGenOutput>Northwind.cs</LastGenOutput>
     </Content>
     <Content Include="Data\Registrar\Registrar.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -660,6 +752,20 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Data\Easel\Easel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Easel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Easel\Easel.edmx.diagram">
+      <DependentUpon>Easel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Data\Northwind\Northwind.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Northwind.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Northwind\Northwind.edmx.diagram">
+      <DependentUpon>Northwind.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Images\200.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -724,9 +830,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CATscores\" />
-    <Folder Include="Views\DDL\" />
-    <Folder Include="Views\Menu\" />
+    <Folder Include="Views\Adaptive_Rendering\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,12 +1,59 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model TelerikMvcApp1.Models.User
 
 
 <div class="placeholders">
-
     <div class="row d-flex justify-content-start">
-        <div class="col-md-2 mb-3 placeholder">
+
+        <div class="col-md-3">
+
+            <h2>Societies</h2>
+            <p>
+                @(Html.Kendo().DropDownList()
+                  .Name("society")
+                  .DataTextField("Text")
+                  .DataValueField("Text")
+                  .OptionLabel("Select a Society...")
+                  .HtmlAttributes(new { value = "Select a Society", Style = "float: left, width:90px; text-align:center" })
+                  .DataSource(source =>
+                  {
+                      source.Read(read =>
+                      {
+                          read.Action("GetSocDDL", "Home");
+                      });
+
+                  })
+                  //.HtmlAttributes(new { style = "width: 100%" })
+                  .Events(e =>
+                  {
+                      e.Change("changeSociety");
+                  })
+
+            )
+            </p>
+
+        </div>
+
+        <div class="col-md-3" id="gyr">
+            <h2>Grad Years</h2>
+            <p>
+                @(Html.Kendo().DropDownList()
+                        .Name("classYear")
+                        //.HtmlAttributes(new { style = "width:100%" })
+                        .OptionLabel("Select a Graduate Year...")
+                        .DataTextField("classYear")
+                        .DataValueField("classYear")
+                        .BindTo(((System.Collections.IEnumerable)ViewData["classYear"]))
+                        .Events(x => x.Change("changeGradYear"))
+                        .HtmlAttributes(new { value = "Select Grad Year", Style = "float: left, width:90px; text-align:center" })
+                        )
+            </p>
+
+        </div>
+
+        <div class="col-md-2 mb-3 ">
             <h2>Roster Reports: </h2>
             <p>
                 @(Html.Kendo().DropDownTree()
@@ -17,7 +64,7 @@
                     .DataUrlField("LinksTo")
                     .Items(items=>
                     {
-                        items.Add().Text("Full 1 Summary").Id("1");
+                        items.Add().Text("Full Summary").Id("1");
                         items.Add().Text("Foundation Blocks Summary").Id("2").Items(children =>
                         {
                             children.Add().Text("Block 1").Id("3");
@@ -68,7 +115,7 @@
 
                 )
             </p>
-            <h2>Individual Student Data:</h2>
+            @*<h2>Individual Student Data:</h2>
             <p>
                 @(Html.Kendo().DropDownList()
                     .Name("studentInfoDDL")
@@ -81,53 +128,7 @@
                     })
                     .OptionLabel("Select an Option...")
                     )
-            </p>
-           
-        </div>
-
-        <div class="col-md-3" >
-
-            <h2>Societies</h2>
-            <p>
-                @(Html.Kendo().DropDownList()
-                  .Name("society")
-                  .DataTextField("Text")
-                  .DataValueField("Text")
-                  .OptionLabel("Select a Society...")
-                  .HtmlAttributes(new { value = "Select a Society", Style = "float: left, width:90px; text-align:center" })
-                  .DataSource(source =>
-                  {
-                      source.Read(read =>
-                      {
-                          read.Action("GetSocDDL", "Home");
-                      });
-
-                  })
-                  //.HtmlAttributes(new { style = "width: 100%" })
-                  .Events(e =>
-                  {
-                      e.Change("changeSociety");
-                  })
-
-            )
-            </p>
-
-        </div>
-
-        <div class="col-md-3" id="gyr">
-            <h2>Grad Years</h2>
-            <p>
-                @(Html.Kendo().DropDownList()
-                        .Name("classYear")
-                        //.HtmlAttributes(new { style = "width:100%" })
-                        .OptionLabel("Select a Graduate Year...")
-                        .DataTextField("classYear")
-                        .DataValueField("classYear")
-                        .BindTo(((System.Collections.IEnumerable)ViewData["classYear"]))
-                        .Events(x => x.Change("changeGradYear"))
-                        .HtmlAttributes(new { value = "Select Grad Year", Style = "float: left, width:90px; text-align:center" })
-                        )
-            </p>
+            </p>*@
 
         </div>
 
@@ -139,7 +140,7 @@
                         .OptionLabel("Select a Student Name... ")
                         .DataTextField("Name")
                         .DataValueField("Value")
-                        .Filter("contains")                        
+                        .Filter("contains")
                         .DataSource(source =>
                         {
                             source.Read(read =>
@@ -150,49 +151,87 @@
                             })
                             .ServerFiltering(false);
                         })
-                        .Events(x => x.Change("changeStudent"))
+                        .Events(x => { x.Change("changeStudent");})
                         .Enable(true)
                         //.CascadeFrom("gradYear")
                         )
-           
+
         </div>
-
-
+                
+    </div>    
+</div>
+<div id="reportDetails">
+    <div id="remind">
+        <div id="remBoth">Please select a Society and Graduate Year</div>
     </div>
-
+    <div id="reportViewDDL">
+        <div class="headers">
+            <h1 id="fs" class="toHide">Full Summary</h1>
+            <h1 id="cat" class="toHide">CAT Score Details</h1>
+            <h1 id="requestInput" class="toHide">Please Select a Student from the DropDownList</h1>
+        </div>
+    </div>
+    <div id="reportView" class="toHide">
+        <div id="selectBlock" class="toHide">
+            <h4>Please Select a Block</h4>
+        </div>
+        <div id="FblockView" class="toHide">
+            <h4>Foundation Blocks Summary</h4>
+        </div>
+        <div id="ePortfolio" class="toHide">
+            <h4>Summative ePortfolio</h4>
+        </div>
+        <div id="clinicalBasic" class="toHide">
+            <h4>Clinical Basic Core Evaluation</h4>
+        </div>
+        <div id="clinicalAdv" class="toHide">
+            <h4>Clinical Advanced Core Evaluation</h4>
+        </div>
+        <div id="clinicalHonor" class="toHide">
+            <h4>Clinical Honors Report</h4>
+        </div>
+        <div id="PLPblockView" class="toHide">
+            <h4>Professional Learning Plan (PLP)</h4>
+        </div>
+        <div id="Attend" class="toHide">
+            <h4>Attendance</h4>
+        </div>
+        <div id="usmle" class="toHide">
+            <h4>USMLE Scores</h4>
+        </div>
+        <div id="IQblockView" class="toHide">
+            <h4>IQ Self & Peer Feedback</h4>
+        </div>
+        <div id="sami" class="toHide">
+            <h4>SAMI Attendance</h4>
+        </div>
+    </div>
     <div class="selectedStudentOptions">
-
-
-        @*<h3 class="studentOptionHeaders">
-            Western Reserve<span style="font-size:small">2</span> Curriculum Core Competencies
-        </h3>
-        <h4 class="studentOptionHeaders"><b>Overview of Summative ePortfolio</b></h4>
-        <p>Summative ePortfolio Overview is not available. Please contact eCurriculum Manager (<a href='mailto:eportfolios@case.edu'>eportfolios@case.edu</a></p>
-        <br />*@
-
+        @*move this to fs div OR attatch it to show only when ddl reps selected*@
         @(Html.Kendo().TabStrip()
             .Name("studentStatusOptions")
             .Items(x =>
             {
-                x.Add().Text("Student Information")
+                x.Add().Text("Student Details")
                     .Selected(true)
                     .Content(@<text>
-                                <div class="studDet" style="display:grid; grid-template-columns:auto auto; gap:10px; padding:10px;">
+                                <div id ="prac" class="studDet" style="display:grid; grid-template-columns:auto auto; gap:10px; padding:10px;">
                                     <div class="studPic" style="padding: 20px 0;">
                                         <img src="https://www.w3schools.com/html/img_girl.jpg" style="height:275px; width:auto; ">
                                     </div>
                                     <div class="studInfo" style="padding: 20px 0;">
                                         <h3>Personal Information</h3>
-                                        
+
                                             <ul>
                                                 <li>Student Name</li>
                                                 <li>Student Society</li>
                                                 <li>Student Expected Grad Year</li>
                                             </ul>
-                                        
+
                                     </div>
                                 </div>
                               </text>);
+
 
                 x.Add().Text("Full Summary Details")
                     .LoadContentFrom(Url.Content("~/Home/ReportDetails"));
@@ -206,11 +245,14 @@
         )
     </div>
 
-
 </div>
 
-<script>
 
+<script>
+    $(function () {
+        $("#remind").show();
+        $("#remBoth").show();
+    })
     function GetYear() {
         return {
             classYear: $("#classYear").data("kendoDropDownList").value()
@@ -228,11 +270,17 @@
             report: $("#rostReps").data("kendoDropDownTree").value()
         }
     }
+    function GetStudID() {
+        return {
+            student: $("#students").data("kendoDropDownTree").value()
+        }
+    }
 
     function changeSociety() {
         var getSoc = $("#society").data("kendoDropDownList");
         var society = getSoc.value();
-
+        $('#remBoth').hide();
+        /*$('#remGyr').show();*/
         console.log(society);
 
         $.ajax({
@@ -246,25 +294,29 @@
     function changeGradYear() {
         var getYear = $("#classYear").data("kendoDropDownList");
         var classYear = getYear.value();
+        $('#remBoth').hide();
 
-        console.log(classYear)
-
+        //$("#studentDDL").show()
         $.ajax({
-            url: '@Url.Action("SaveGradYear", "Home")',
             type: 'POST',
+            url: '@Url.Action("SaveGradYear", "Home")',
+            dataType: 'json',
+            cache: false,
             method: 'POST',
-            data: { classYear: classYear },
-            dataType: 'json'
-        });
+            data: { 'classYear': classYear },
 
+        });
+        $("#society").data("kendoDropDownList").dataSource.read();
         $("#students").data("kendoDropDownList").dataSource.read();
     }
+
     function changeReport() {
         var getRep = $("#rostReps").data("kendoDropDownTree");
         var rRep = getRep.text();
-        
-        console.log(rRep)
-        $('#studentDDL').show();
+        //$(".selectedStudentOptions").show()
+        $("#students").data("kendoDropDownList").dataSource.read();
+        //console.log(rRep)
+        viewReport();
         $.ajax({
             url: '@Url.Action("SaveReport", "Home")',
             type: 'POST',
@@ -277,33 +329,209 @@
 
         });
 
-        $("#students").data("kendoDropDownList").dataSource.read();
+        console.log(rRep)
     }
+
+    function getStuCaseId() {
+        var getStudent = $("#students").data("kendoDropDownList");
+        var stuCaseId = getStudent.value();
+        $.ajax({
+            url: '@Url.Action("GetStudCaseId", "Grid")',
+            type: 'GET',
+            data: {
+                'studentCaseId': stuCaseId
+            },
+            dataType: 'json'
+        });
+    }
+
     function changeStudent() {
         var stuName = $("#students").data("kendoDropDownList");
-        var selectedStudent = stuName.value();
+        var selectedStudent = stuName.text();
 
-        console.log(selectedStudent)
+        $("#requestInput").hide();
         $('.selectedStudentOptions').show();
+        //checkStudentDDL();
+        console.log(selectedStudent);
         $.ajax({
-            url: '@Url.Action("GetStudentsDDL", "Home")',
+            url: '@Url.Action("SaveSelectedStudent", "Home")',
             type: 'GET',
             data: {
                 'StudentName': selectedStudent
             },
-            dataType: 'json',
+            dataType: 'json'
         });
 
+
+    }
+
+
+    function viewReport() {
+        //console.log("viewReport: TopMenu.view")
+
+        $(".toHide").hide()
+        //checkInput();
+
+        var reportDDL = $("#rostReps").data("kendoDropDownTree");
+        var rRepVal = reportDDL.value();
+
+        switch (rRepVal) {
+            case "1":
+                $("#reportViewDDL").show()
+                $("#fs").show()
+                $("#studentDDL").show()
+                $("#requestInput").show()
+                break;
+            case "2":
+                $("#reportView").show()
+                $("#selectBlock").show()
+                break;
+            case "3":
+                $("#reportView").show()
+                $("#FblockView").show()
+                break;
+            case "4":
+                $("#reportView").show()
+                $("#FblockView").show()
+                break;
+            case "5":
+                $("#reportView").show()
+                $("#FblockView").show()
+                break;
+            case "6":
+                $("#reportView").show()
+                $("#FblockView").show()
+                break;
+            case "7":
+                $("#reportView").show()
+                $("#FblockView").show()
+                break;
+            case "8":
+                $("#reportView").show()
+                $("#FblockView").show()
+                break;
+            case "9":
+                $("#reportViewDDL").show()
+                $("#cat").show()
+                $("#studentDDL").show()
+                $("#requestInput").show()
+                break;
+            case "10":
+                $("#reportView").show()
+                $("#ePortfolio").show()
+                break;
+            case "11":
+                $("#reportView").show()
+                $("#clinicalBasic").show()
+                break;
+            case "12":
+                $("#reportView").show()
+                $("#clinicalAdv").show()
+                break;
+            case "13":
+                $("#reportView").show()
+                $("#clinicalHonor").show()
+                break;
+            case "14":
+                $("#reportView").show()
+                $("#selectBlock").show()
+                break;
+            case "15":
+                $("#reportView").show()
+                $("#PLPblockView").show()
+                break;
+            case "16":
+                $("#reportView").show()
+                $("#PLPblockView").show()
+                break;
+            case "17":
+                $("#reportView").show()
+                $("#PLPblockView").show()
+                break;
+            case "18":
+                $("#reportView").show()
+                $("#PLPblockView").show()
+                break;
+            case "19":
+                $("#reportView").show()
+                $("#PLPblockView").show()
+                break;
+            case "20":
+                $("#reportView").show()
+                $("#PLPblockView").show()
+                break;
+            case "21":
+                $("#reportView").show()
+                $("#Attend").show()
+                break;
+            case "22":
+                $("#reportViewDDL").show()
+                $("#usmle").show()
+                break;
+            case "23":
+                $("#reportView").show()
+                $("#selectBlock").show()
+                break;
+            case "24":
+                $("#reportView").show()
+                $("#IQblockView").show()
+                break;
+            case "25":
+                $("#reportView").show()
+                $("#IQblockView").show()
+                break;
+            case "26":
+                $("#reportView").show()
+                $("#IQblockView").show()
+                break;
+            case "27":
+                $("#reportView").show()
+                $("#IQblockView").show()
+                break;
+            case "28":
+                $("#reportView").show()
+                $("#IQblockView").show()
+                break;
+            case "29":
+                $("#reportView").show()
+                $("#sami").show()
+                break;
+            default:
+                break;
+        }
     }
 
 </script>
 
 
+
 <style>
-    ul{
+    #reportDetails{
+        display:block;
+        justify-content:center;
+    }
+    .headers{
+        display:block;
+        justify-content:center;
+        text-align:center;
+    }
+    #requestInput{
+        display:none;
+        text-align:center;
+    }
+    #remind {
+        display: none;
+        justify-content:center;
+    }
+    #remBoth{
+        display:none;
+        text-align:center;
+    }
+
+    ul {
         list-style-type: none;
     }
-    
+
     .kendoLists {
         padding-top: 15px;
         margin-left: 350px;
@@ -313,12 +541,110 @@
         display: none;
         padding-top: 25px;
     }
-    #studentDDL{
-        display:none;
+
+    #studentDDL {
+        display: none;
     }
+
     .studentOptionHeaders {
         background-color: #0a304e;
         color: whitesmoke;
         text-align: center;
     }
+    #selectedStudentOpt {
+        display: none;
+    }
+
+    #fs {
+        display: none;
+    }
+
+    #fs-grid {
+        display: none;
+    }
+
+    #cat {
+        display: none;
+    }
+
+    #selectBlock {
+        display: none;
+    }
+
+    #FblockView {
+        display: none;
+    }
+
+    #PLPblockView {
+        display: none;
+    }
+
+    #IQblockView {
+        display: none;
+    }
+
+    #ePortfolio {
+        display: none;
+    }
+
+    #clinicalBasic {
+        display: none;
+    }
+
+    #clinicalAdv {
+        display: none;
+    }
+
+    #clinicalHonor {
+        display: none;
+    }
+
+    #Attend {
+        display: none;
+    }
+
+    #usmle {
+        display: none;
+    }
+
+    #sami {
+        display: none;
+    }
+
+    #Fblks {
+        display: none;
+    }
+
+    .fullSummary {
+        display: none;
+    }
+
+    .reportDetails {
+        display: none;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    #fs-fix {
+        padding-left: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    #reportView {
+        display: none;
+        padding-top: 25px;
+    }
+
+
+
+    #reportViewDDL {
+        display: none;
+        padding-top: 25px;
+    }
+
+   
 </style>

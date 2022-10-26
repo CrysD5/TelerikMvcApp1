@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EaselModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AssessmentBlockComponent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gyr" Type="int" />
+          <Property Name="somsectionblock_id" Type="int" />
+          <Property Name="assessmentblockcomponentdetail_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="70" />
+          <Property Name="active" Type="bit" />
+          <Property Name="isRedirected" Type="bit" Nullable="false" />
+          <Property Name="sequence" Type="int" />
+          <Property Name="userlogin" Type="nvarchar" MaxLength="50" />
+          <Property Name="userdate" Type="datetime" />
+          <Property Name="seyear_old" Type="varchar" MaxLength="4" />
+          <Property Name="bcode_old" Type="int" />
+          <Property Name="asscomp_old" Type="nvarchar" MaxLength="10" />
+          <Property Name="asssubcomp_old" Type="nvarchar" MaxLength="10" />
+          <Property Name="active_old" Type="char" MaxLength="1" />
+          <Property Name="seqnum_old" Type="int" />
+        </EntityType>
+        <EntityType Name="AssessmentBlockComponentDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="subcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="name" Type="nvarchar" MaxLength="70" />
+          <Property Name="othername" Type="nvarchar" MaxLength="70" />
+          <Property Name="ismanual" Type="bit" />
+          <Property Name="isattendance" Type="bit" />
+          <Property Name="gradesource" Type="nvarchar" MaxLength="200" />
+          <Property Name="sequence" Type="int" />
+          <Property Name="issubcomponent" Type="bit" />
+          <Property Name="issourcedata" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="userlogin" Type="nvarchar" MaxLength="50" />
+          <Property Name="userdate" Type="datetime" />
+          <Property Name="asscomp_old" Type="nvarchar" MaxLength="10" />
+          <Property Name="asssubcomp_old" Type="nvarchar" MaxLength="10" />
+          <Property Name="asscompname_old" Type="nvarchar" MaxLength="70" />
+          <Property Name="asssubcompname_old" Type="nvarchar" MaxLength="70" />
+          <Property Name="manual_update_old" Type="varchar" MaxLength="1" />
+          <Property Name="attendance_old" Type="varchar" MaxLength="1" />
+          <Property Name="subcomp_old" Type="varchar" MaxLength="1" />
+          <Property Name="source_data_old" Type="varchar" MaxLength="1" />
+          <Property Name="sort_num_old" Type="int" />
+        </EntityType>
+        <EntityType Name="AssessmentBlockComponentStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gyr" Type="int" />
+          <Property Name="somsectionblock_id" Type="int" />
+          <Property Name="assessmentblockcomponentdetail_id" Type="int" />
+          <Property Name="emaddr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="assessmentgradecode_id" Type="int" />
+          <Property Name="attempt" Type="int" Nullable="false" />
+          <Property Name="release" Type="bit" />
+          <Property Name="examdate" Type="datetime" />
+          <Property Name="userlogin" Type="nvarchar" MaxLength="50" />
+          <Property Name="userdate" Type="datetime" />
+          <Property Name="seyear_old" Type="varchar" MaxLength="4" />
+          <Property Name="bcode_old" Type="int" />
+          <Property Name="asscomp_old" Type="nvarchar" MaxLength="50" />
+          <Property Name="asssubcomp_old" Type="nvarchar" MaxLength="10" />
+          <Property Name="release_old" Type="nvarchar" MaxLength="1" />
+          <Property Name="grade_old" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="AssessmentGradeCode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="10" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="shortname" Type="nvarchar" MaxLength="2" />
+          <Property Name="detail" Type="nvarchar" MaxLength="200" />
+          <Property Name="active" Type="bit" />
+          <Property Name="userlogin" Type="nvarchar" MaxLength="50" />
+          <Property Name="userdate" Type="datetime" />
+          <Property Name="grcode_old" Type="int" Nullable="false" />
+          <Property Name="grname_old" Type="nvarchar" MaxLength="50" />
+          <Property Name="grnameabbr_old" Type="nvarchar" MaxLength="10" />
+          <Property Name="grnameshort_old" Type="nvarchar" MaxLength="2" />
+          <Property Name="details_old" Type="nvarchar" MaxLength="100" />
+          <Property Name="active_old" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="AssessmentGradeStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gyr" Type="int" />
+          <Property Name="somsectionblock_id" Type="int" />
+          <Property Name="emaddr" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="assessmentgradecode_id" Type="int" />
+          <Property Name="assessmentnotmeetreasoncode_id" Type="int" />
+          <Property Name="attempt" Type="int" Nullable="false" />
+          <Property Name="release" Type="bit" />
+          <Property Name="notes" Type="varchar" MaxLength="8000" />
+          <Property Name="userlogin" Type="varchar" MaxLength="50" />
+          <Property Name="userdate" Type="datetime" />
+          <Property Name="nmcode_old" Type="int" />
+          <Property Name="seyear_old" Type="varchar" MaxLength="4" />
+          <Property Name="bcode_old" Type="int" />
+          <Property Name="finalGrade_old" Type="varchar" MaxLength="1" />
+          <Property Name="release_old" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_AssessmentBlockComponent_AssessmentBlockComponentDetail">
+          <End Role="AssessmentBlockComponentDetail" Type="Self.AssessmentBlockComponentDetail" Multiplicity="1" />
+          <End Role="AssessmentBlockComponent" Type="Self.AssessmentBlockComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentBlockComponentDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponent">
+              <PropertyRef Name="assessmentblockcomponentdetail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail">
+          <End Role="AssessmentBlockComponentDetail" Type="Self.AssessmentBlockComponentDetail" Multiplicity="0..1" />
+          <End Role="AssessmentBlockComponentDetail1" Type="Self.AssessmentBlockComponentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentBlockComponentDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponentDetail1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail">
+          <End Role="AssessmentBlockComponentDetail" Type="Self.AssessmentBlockComponentDetail" Multiplicity="0..1" />
+          <End Role="AssessmentBlockComponentStudent" Type="Self.AssessmentBlockComponentStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentBlockComponentDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponentStudent">
+              <PropertyRef Name="assessmentblockcomponentdetail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentBlockComponentStudent_AssessmentGradeCode">
+          <End Role="AssessmentGradeCode" Type="Self.AssessmentGradeCode" Multiplicity="0..1" />
+          <End Role="AssessmentBlockComponentStudent" Type="Self.AssessmentBlockComponentStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentGradeCode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponentStudent">
+              <PropertyRef Name="assessmentgradecode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentGradeStudent_AssessmentNMReasonCode">
+          <End Role="AssessmentGradeCode" Type="Self.AssessmentGradeCode" Multiplicity="0..1" />
+          <End Role="AssessmentGradeStudent" Type="Self.AssessmentGradeStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentGradeCode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentGradeStudent">
+              <PropertyRef Name="assessmentnotmeetreasoncode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EaselModelStoreContainer">
+          <EntitySet Name="AssessmentBlockComponent" EntityType="Self.AssessmentBlockComponent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentBlockComponentDetail" EntityType="Self.AssessmentBlockComponentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentBlockComponentStudent" EntityType="Self.AssessmentBlockComponentStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentGradeCode" EntityType="Self.AssessmentGradeCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentGradeStudent" EntityType="Self.AssessmentGradeStudent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AssessmentBlockComponent_AssessmentBlockComponentDetail" Association="Self.FK_AssessmentBlockComponent_AssessmentBlockComponentDetail">
+            <End Role="AssessmentBlockComponentDetail" EntitySet="AssessmentBlockComponentDetail" />
+            <End Role="AssessmentBlockComponent" EntitySet="AssessmentBlockComponent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail" Association="Self.FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail">
+            <End Role="AssessmentBlockComponentDetail" EntitySet="AssessmentBlockComponentDetail" />
+            <End Role="AssessmentBlockComponentDetail1" EntitySet="AssessmentBlockComponentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail" Association="Self.FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail">
+            <End Role="AssessmentBlockComponentDetail" EntitySet="AssessmentBlockComponentDetail" />
+            <End Role="AssessmentBlockComponentStudent" EntitySet="AssessmentBlockComponentStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentBlockComponentStudent_AssessmentGradeCode" Association="Self.FK_AssessmentBlockComponentStudent_AssessmentGradeCode">
+            <End Role="AssessmentGradeCode" EntitySet="AssessmentGradeCode" />
+            <End Role="AssessmentBlockComponentStudent" EntitySet="AssessmentBlockComponentStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentGradeStudent_AssessmentNMReasonCode" Association="Self.FK_AssessmentGradeStudent_AssessmentNMReasonCode">
+            <End Role="AssessmentGradeCode" EntitySet="AssessmentGradeCode" />
+            <End Role="AssessmentGradeStudent" EntitySet="AssessmentGradeStudent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EaselModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AssessmentBlockComponent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gyr" Type="Int32" />
+          <Property Name="somsectionblock_id" Type="Int32" />
+          <Property Name="assessmentblockcomponentdetail_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="isRedirected" Type="Boolean" Nullable="false" />
+          <Property Name="sequence" Type="Int32" />
+          <Property Name="userlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userdate" Type="DateTime" Precision="3" />
+          <Property Name="seyear_old" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="bcode_old" Type="Int32" />
+          <Property Name="asscomp_old" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="asssubcomp_old" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="active_old" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="seqnum_old" Type="Int32" />
+          <NavigationProperty Name="AssessmentBlockComponentDetail" Relationship="Self.FK_AssessmentBlockComponent_AssessmentBlockComponentDetail" FromRole="AssessmentBlockComponent" ToRole="AssessmentBlockComponentDetail" />
+        </EntityType>
+        <EntityType Name="AssessmentBlockComponentDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="othername" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="ismanual" Type="Boolean" />
+          <Property Name="isattendance" Type="Boolean" />
+          <Property Name="gradesource" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="sequence" Type="Int32" />
+          <Property Name="issubcomponent" Type="Boolean" />
+          <Property Name="issourcedata" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="userlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userdate" Type="DateTime" Precision="3" />
+          <Property Name="asscomp_old" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="asssubcomp_old" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="asscompname_old" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="asssubcompname_old" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="manual_update_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="attendance_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="subcomp_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="source_data_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sort_num_old" Type="Int32" />
+          <NavigationProperty Name="AssessmentBlockComponents" Relationship="Self.FK_AssessmentBlockComponent_AssessmentBlockComponentDetail" FromRole="AssessmentBlockComponentDetail" ToRole="AssessmentBlockComponent" />
+          <NavigationProperty Name="AssessmentBlockComponentDetail1" Relationship="Self.FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail" FromRole="AssessmentBlockComponentDetail" ToRole="AssessmentBlockComponentDetail1" />
+          <NavigationProperty Name="AssessmentBlockComponentDetail2" Relationship="Self.FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail" FromRole="AssessmentBlockComponentDetail1" ToRole="AssessmentBlockComponentDetail" />
+          <NavigationProperty Name="AssessmentBlockComponentStudents" Relationship="Self.FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail" FromRole="AssessmentBlockComponentDetail" ToRole="AssessmentBlockComponentStudent" />
+        </EntityType>
+        <EntityType Name="AssessmentBlockComponentStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gyr" Type="Int32" />
+          <Property Name="somsectionblock_id" Type="Int32" />
+          <Property Name="assessmentblockcomponentdetail_id" Type="Int32" />
+          <Property Name="emaddr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="assessmentgradecode_id" Type="Int32" />
+          <Property Name="attempt" Type="Int32" Nullable="false" />
+          <Property Name="release" Type="Boolean" />
+          <Property Name="examdate" Type="DateTime" Precision="3" />
+          <Property Name="userlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userdate" Type="DateTime" Precision="3" />
+          <Property Name="seyear_old" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="bcode_old" Type="Int32" />
+          <Property Name="asscomp_old" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="asssubcomp_old" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="release_old" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="grade_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssessmentBlockComponentDetail" Relationship="Self.FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail" FromRole="AssessmentBlockComponentStudent" ToRole="AssessmentBlockComponentDetail" />
+          <NavigationProperty Name="AssessmentGradeCode" Relationship="Self.FK_AssessmentBlockComponentStudent_AssessmentGradeCode" FromRole="AssessmentBlockComponentStudent" ToRole="AssessmentGradeCode" />
+        </EntityType>
+        <EntityType Name="AssessmentGradeCode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shortname" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="detail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="userlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userdate" Type="DateTime" Precision="3" />
+          <Property Name="grcode_old" Type="Int32" Nullable="false" />
+          <Property Name="grname_old" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="grnameabbr_old" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="grnameshort_old" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="details_old" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="active_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssessmentBlockComponentStudents" Relationship="Self.FK_AssessmentBlockComponentStudent_AssessmentGradeCode" FromRole="AssessmentGradeCode" ToRole="AssessmentBlockComponentStudent" />
+          <NavigationProperty Name="AssessmentGradeStudents" Relationship="Self.FK_AssessmentGradeStudent_AssessmentNMReasonCode" FromRole="AssessmentGradeCode" ToRole="AssessmentGradeStudent" />
+        </EntityType>
+        <EntityType Name="AssessmentGradeStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gyr" Type="Int32" />
+          <Property Name="somsectionblock_id" Type="Int32" />
+          <Property Name="emaddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="assessmentgradecode_id" Type="Int32" />
+          <Property Name="assessmentnotmeetreasoncode_id" Type="Int32" />
+          <Property Name="attempt" Type="Int32" Nullable="false" />
+          <Property Name="release" Type="Boolean" />
+          <Property Name="notes" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="userlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userdate" Type="DateTime" Precision="3" />
+          <Property Name="nmcode_old" Type="Int32" />
+          <Property Name="seyear_old" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="bcode_old" Type="Int32" />
+          <Property Name="finalGrade_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="release_old" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssessmentGradeCode" Relationship="Self.FK_AssessmentGradeStudent_AssessmentNMReasonCode" FromRole="AssessmentGradeStudent" ToRole="AssessmentGradeCode" />
+        </EntityType>
+        <Association Name="FK_AssessmentBlockComponent_AssessmentBlockComponentDetail">
+          <End Role="AssessmentBlockComponentDetail" Type="Self.AssessmentBlockComponentDetail" Multiplicity="1" />
+          <End Role="AssessmentBlockComponent" Type="Self.AssessmentBlockComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentBlockComponentDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponent">
+              <PropertyRef Name="assessmentblockcomponentdetail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail">
+          <End Role="AssessmentBlockComponentDetail" Type="Self.AssessmentBlockComponentDetail" Multiplicity="0..1" />
+          <End Role="AssessmentBlockComponentDetail1" Type="Self.AssessmentBlockComponentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentBlockComponentDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponentDetail1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail">
+          <End Role="AssessmentBlockComponentDetail" Type="Self.AssessmentBlockComponentDetail" Multiplicity="0..1" />
+          <End Role="AssessmentBlockComponentStudent" Type="Self.AssessmentBlockComponentStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentBlockComponentDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponentStudent">
+              <PropertyRef Name="assessmentblockcomponentdetail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentBlockComponentStudent_AssessmentGradeCode">
+          <End Role="AssessmentGradeCode" Type="Self.AssessmentGradeCode" Multiplicity="0..1" />
+          <End Role="AssessmentBlockComponentStudent" Type="Self.AssessmentBlockComponentStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentGradeCode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentBlockComponentStudent">
+              <PropertyRef Name="assessmentgradecode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentGradeStudent_AssessmentNMReasonCode">
+          <End Role="AssessmentGradeCode" Type="Self.AssessmentGradeCode" Multiplicity="0..1" />
+          <End Role="AssessmentGradeStudent" Type="Self.AssessmentGradeStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentGradeCode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssessmentGradeStudent">
+              <PropertyRef Name="assessmentnotmeetreasoncode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AssessmentBlockComponents" EntityType="Self.AssessmentBlockComponent" />
+          <EntitySet Name="AssessmentBlockComponentDetails" EntityType="Self.AssessmentBlockComponentDetail" />
+          <EntitySet Name="AssessmentBlockComponentStudents" EntityType="Self.AssessmentBlockComponentStudent" />
+          <EntitySet Name="AssessmentGradeCodes" EntityType="Self.AssessmentGradeCode" />
+          <EntitySet Name="AssessmentGradeStudents" EntityType="Self.AssessmentGradeStudent" />
+          <AssociationSet Name="FK_AssessmentBlockComponent_AssessmentBlockComponentDetail" Association="Self.FK_AssessmentBlockComponent_AssessmentBlockComponentDetail">
+            <End Role="AssessmentBlockComponentDetail" EntitySet="AssessmentBlockComponentDetails" />
+            <End Role="AssessmentBlockComponent" EntitySet="AssessmentBlockComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail" Association="Self.FK_AssessmentBlockComponentDetail_AssessmentBlockComponentDetail">
+            <End Role="AssessmentBlockComponentDetail" EntitySet="AssessmentBlockComponentDetails" />
+            <End Role="AssessmentBlockComponentDetail1" EntitySet="AssessmentBlockComponentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail" Association="Self.FK_AssessmentBlockComponentStudent_AssessmentBlockComponentDetail">
+            <End Role="AssessmentBlockComponentDetail" EntitySet="AssessmentBlockComponentDetails" />
+            <End Role="AssessmentBlockComponentStudent" EntitySet="AssessmentBlockComponentStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentBlockComponentStudent_AssessmentGradeCode" Association="Self.FK_AssessmentBlockComponentStudent_AssessmentGradeCode">
+            <End Role="AssessmentGradeCode" EntitySet="AssessmentGradeCodes" />
+            <End Role="AssessmentBlockComponentStudent" EntitySet="AssessmentBlockComponentStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentGradeStudent_AssessmentNMReasonCode" Association="Self.FK_AssessmentGradeStudent_AssessmentNMReasonCode">
+            <End Role="AssessmentGradeCode" EntitySet="AssessmentGradeCodes" />
+            <End Role="AssessmentGradeStudent" EntitySet="AssessmentGradeStudents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EaselModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AssessmentBlockComponents">
+            <EntityTypeMapping TypeName="EaselModel.AssessmentBlockComponent">
+              <MappingFragment StoreEntitySet="AssessmentBlockComponent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="somsectionblock_id" ColumnName="somsectionblock_id" />
+                <ScalarProperty Name="assessmentblockcomponentdetail_id" ColumnName="assessmentblockcomponentdetail_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="isRedirected" ColumnName="isRedirected" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+                <ScalarProperty Name="userdate" ColumnName="userdate" />
+                <ScalarProperty Name="seyear_old" ColumnName="seyear_old" />
+                <ScalarProperty Name="bcode_old" ColumnName="bcode_old" />
+                <ScalarProperty Name="asscomp_old" ColumnName="asscomp_old" />
+                <ScalarProperty Name="asssubcomp_old" ColumnName="asssubcomp_old" />
+                <ScalarProperty Name="active_old" ColumnName="active_old" />
+                <ScalarProperty Name="seqnum_old" ColumnName="seqnum_old" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentBlockComponentDetails">
+            <EntityTypeMapping TypeName="EaselModel.AssessmentBlockComponentDetail">
+              <MappingFragment StoreEntitySet="AssessmentBlockComponentDetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="subcode" ColumnName="subcode" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="othername" ColumnName="othername" />
+                <ScalarProperty Name="ismanual" ColumnName="ismanual" />
+                <ScalarProperty Name="isattendance" ColumnName="isattendance" />
+                <ScalarProperty Name="gradesource" ColumnName="gradesource" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="issubcomponent" ColumnName="issubcomponent" />
+                <ScalarProperty Name="issourcedata" ColumnName="issourcedata" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+                <ScalarProperty Name="userdate" ColumnName="userdate" />
+                <ScalarProperty Name="asscomp_old" ColumnName="asscomp_old" />
+                <ScalarProperty Name="asssubcomp_old" ColumnName="asssubcomp_old" />
+                <ScalarProperty Name="asscompname_old" ColumnName="asscompname_old" />
+                <ScalarProperty Name="asssubcompname_old" ColumnName="asssubcompname_old" />
+                <ScalarProperty Name="manual_update_old" ColumnName="manual_update_old" />
+                <ScalarProperty Name="attendance_old" ColumnName="attendance_old" />
+                <ScalarProperty Name="subcomp_old" ColumnName="subcomp_old" />
+                <ScalarProperty Name="source_data_old" ColumnName="source_data_old" />
+                <ScalarProperty Name="sort_num_old" ColumnName="sort_num_old" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentBlockComponentStudents">
+            <EntityTypeMapping TypeName="EaselModel.AssessmentBlockComponentStudent">
+              <MappingFragment StoreEntitySet="AssessmentBlockComponentStudent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="somsectionblock_id" ColumnName="somsectionblock_id" />
+                <ScalarProperty Name="assessmentblockcomponentdetail_id" ColumnName="assessmentblockcomponentdetail_id" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="assessmentgradecode_id" ColumnName="assessmentgradecode_id" />
+                <ScalarProperty Name="attempt" ColumnName="attempt" />
+                <ScalarProperty Name="release" ColumnName="release" />
+                <ScalarProperty Name="examdate" ColumnName="examdate" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+                <ScalarProperty Name="userdate" ColumnName="userdate" />
+                <ScalarProperty Name="seyear_old" ColumnName="seyear_old" />
+                <ScalarProperty Name="bcode_old" ColumnName="bcode_old" />
+                <ScalarProperty Name="asscomp_old" ColumnName="asscomp_old" />
+                <ScalarProperty Name="asssubcomp_old" ColumnName="asssubcomp_old" />
+                <ScalarProperty Name="release_old" ColumnName="release_old" />
+                <ScalarProperty Name="grade_old" ColumnName="grade_old" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentGradeCodes">
+            <EntityTypeMapping TypeName="EaselModel.AssessmentGradeCode">
+              <MappingFragment StoreEntitySet="AssessmentGradeCode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+                <ScalarProperty Name="userdate" ColumnName="userdate" />
+                <ScalarProperty Name="grcode_old" ColumnName="grcode_old" />
+                <ScalarProperty Name="grname_old" ColumnName="grname_old" />
+                <ScalarProperty Name="grnameabbr_old" ColumnName="grnameabbr_old" />
+                <ScalarProperty Name="grnameshort_old" ColumnName="grnameshort_old" />
+                <ScalarProperty Name="details_old" ColumnName="details_old" />
+                <ScalarProperty Name="active_old" ColumnName="active_old" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentGradeStudents">
+            <EntityTypeMapping TypeName="EaselModel.AssessmentGradeStudent">
+              <MappingFragment StoreEntitySet="AssessmentGradeStudent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="somsectionblock_id" ColumnName="somsectionblock_id" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="assessmentgradecode_id" ColumnName="assessmentgradecode_id" />
+                <ScalarProperty Name="assessmentnotmeetreasoncode_id" ColumnName="assessmentnotmeetreasoncode_id" />
+                <ScalarProperty Name="attempt" ColumnName="attempt" />
+                <ScalarProperty Name="release" ColumnName="release" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+                <ScalarProperty Name="userdate" ColumnName="userdate" />
+                <ScalarProperty Name="nmcode_old" ColumnName="nmcode_old" />
+                <ScalarProperty Name="seyear_old" ColumnName="seyear_old" />
+                <ScalarProperty Name="bcode_old" ColumnName="bcode_old" />
+                <ScalarProperty Name="finalGrade_old" ColumnName="finalGrade_old" />
+                <ScalarProperty Name="release_old" ColumnName="release_old" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

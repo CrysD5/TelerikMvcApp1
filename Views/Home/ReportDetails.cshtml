@@ -1,53 +1,61 @@
-﻿<div class="row">
-    @*<div class="col-12">
-            @(Html.Kendo().Grid<TelerikMvcApp1.Models.OrderViewModel>()
-                .Name("grid")
-                .Columns(columns =>
-                {
-                    columns.Bound(p => p.ContactName).Title("Student");
-                    columns.Bound(p => p.OrderID).Title("One")public ActionResult fsReportDetails()
-            {
-                return PartialView();
-            }
-            public ActionResult fsElectivesRoster()
-            {
-                return PartialView();
-            }
-            public ActionResult fsDeanNotes()
-            {
-                return PartialView();
-            }
-                    columns.Bound(p => p.Freight).Title("Two");
-                    columns.Bound(p => p.OrderDate).Title("Three").Format("{0:MM/dd/yyyy}");
-                    columns.Bound(p => p.ShipName).Title("Four");
-                    columns.Bound(p => p.ShipCity).Title("Five");
-                })
-                .Pageable()
-                .Sortable()
-                .Scrollable()
-                .Filterable()
-                .HtmlAttributes(new { style = "height:550px;" })
-                .DataSource(dataSource => dataSource
-                    .Ajax()
-                    .PageSize(20)
-                    .Read(read => read.Action("Orders_Read", "Grid"))
-                )
-            )
-        </div>*@
+﻿<div id="grid-wrap" class="row">
     <div class="col-12">
-        @(Html.Kendo().Grid<TelerikMvcApp1.Models.ReportViewModel>()
+        @(Html.Kendo().Grid<TelerikMvcApp1.Models.CustomerModel>()
+            .Name("grid")
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.CustomerID);
+                columns.Bound(c => c.CustomerName).Width(140);
+                columns.Bound(c => c.ContactName);
+                columns.Bound(c => c.Address).Width(190);
+                columns.Bound(c => c.City);
+                columns.Bound(c => c.PostalCode);
+                columns.Bound(c => c.Country);
+                //columns.Command(command => { command.Destroy(); });
+            })
+            .Mobile()
+            .Resizable(resize=>resize.Columns(true))
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .Filterable()
+            .HtmlAttributes(new { style = "height:550px;" })
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("Customers_Read", "Grid"))
+            //.Destroy(update => update.Action("AdaptiveRendering_Destroy", "Grid"))
+            )
+            )
+    </div>
+
+    @*<div class="col-12">
+        @(Html.Kendo().Grid<TelerikMvcApp1.Models.FullSummaryViewModel>()
         .Name("grid")
         .Columns(columns =>
         {
-            columns.Bound(c => c.ContactName).Width(140);
-            columns.Bound(c => c.ContactTitle).Width(190);
-            columns.Bound(c => c.CompanyName);
-            columns.Bound(c => c.Country).Width(110);
+            columns.Bound(c => c.emaddr).Width(140);
+            columns.Bound(c => c.blkID);
+            columns.Bound(c => c.blkID);
+            columns.Bound(c => c.blkID);
+            columns.Bound(c => c.blkID);
+            columns.Bound(c => c.blkID);
+            columns.Bound(c => c.blkID);
         })
         .DataSource(dataSource => dataSource
             .Ajax()
-            .Read(read => read.Action("ReportView_Read", "Grid"))
+            .Read(read => read.Action("FullSum_Read", "Grid"))
         )
     )
-    </div>
+    </div>*@
 </div>
+@*<script>
+    $(document).ready(function () {
+        var isMobile = Boolean(kendo.support.mobileOS);
+
+        if (isMobile) {
+           
+            $("#grid-wrap").show();
+            $("#grid").data("kendoGrid").resize();
+        }
+    });
+</script>*@

@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <script>
+
+        function dataBoundBlock() {
+            const grid = $("#grid").data("kendoGrid");
+
+            //Load main grid
+            grid.dataSource.read();
+        }
+
+        //Hide or show columns dynamically.
+
+        function dataBoundGrid() {
+            const grid = $("#grid").data("kendoGrid");
+            $("#grid").css('visibility', 'visible');
+            const data = grid.dataSource.data();
+
+            if (data.length == 0) {
+                $("#grid").css('visibility', 'hidden');
+                return;
+            }
+
+            //const block = $("#Block").data("kendoDropDownList");
+            //const classYear = $("#ClassYear").data("kendoDropDownList");
+            //const params = JSON.stringify({ blockID: block.value(), classYear: classYear.value() });
+
+            for (let i = 6; i <= 18; i++) {
+                grid.hideColumn(i);
+            }
+
+            //$.ajax({
+            //    url: "GetActiveComponents",
+            //    type: "POST",
+            //    contentType: 'application/json',
+            //    success: function (data) {
+            //        const components = data.components;
+            //        components.forEach(component => grid.showColumn(component.toUpperCase()));
+            //    }
+            //});
+        }
+    </script>
+    <script id="student-fs-template"></script>
+    <div>
+        @(Html.Kendo().Grid<TelerikMvcApp1.Models.FullSummaryViewModel>()
+            .Name("grid")
+            .HtmlAttributes(new { style = "height:auto;"})
+            .Columns(columns =>
+            {
+                //columns.Template
+                columns.Bound(e => e.studentName).Width(100).Title("Name");
+
+            })
+        )
+    </div>
+</body>
+</html>

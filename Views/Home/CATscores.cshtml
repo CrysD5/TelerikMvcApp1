@@ -1,13 +1,47 @@
-﻿<div id="newNoteForm">
-    <div id="validation-success"></div>
-
-    <form id="exampleform"></form>
+﻿<div id="note-grid-wrap">
+    <div class="col-12">
+        @(Html.Kendo().Grid<TelerikMvcApp1.Models.DeanNotesModel>()
+            .Name("notesGrid")
+            .Columns(columns =>
+            {
+                //columns.Bound(c => c.emaddr);
+                columns.Bound(c=>c.edate).Width(130).Format("{0:MM/dd/yyyy}");
+                columns.Bound(c => c.etitle).Width(150);
+                columns.Bound(c => c.enotes).Width(1400);
+                //columns.Bound(c => c.notefile);
+            })
+            .Resizable(resize=>resize.Columns(true))
+            .Pageable()
+            .Scrollable()
+            .Sortable()
+            .DataSource(dataSource=>dataSource
+                .Ajax()
+                .Read(read=>read.Action("DeanNotes_Read", "Grid"))
+                .Model(model =>
+                {
+                    model.Id(e => e.Id);
+                })
+            ))
+    </div>
 </div>
 
+@* create button to open "Dean Notes Form" *@
+
+
+
+<div id="newNoteForm">
+    <div id="validation-success"></div>
+    <form id="exampleform"></form>
+
+</div>
+
+<style>
+    
+</style>
 <script>
     $(document).ready(function () {
         var validationSuccess = $("#validation-success");
-
+        
         $("#exampleform").kendoForm({
             orientation: "vertical",
             items: [{
@@ -38,5 +72,9 @@
                 validationSuccess.html("");
             }
         });
+
+        
     });
+
+    
 </script>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8b2a0267414046d885020ac76e4e1ace" Name="Diagram1">
+        <EntityTypeShape EntityType="NorthwindModel.Category" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.Employee" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.Product" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.Shipper" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthwindModel.Supplier" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <AssociationConnector Association="NorthwindModel.FK__Products__Catego__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthwindModel.FK__Orders__Customer__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthwindModel.FK__Orders__Employee__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthwindModel.FK__OrderDeta__Order__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthwindModel.FK__OrderDeta__Produ__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthwindModel.FK__Orders__ShipperI__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthwindModel.FK__Products__Suppli__1B0907CE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
