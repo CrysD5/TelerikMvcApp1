@@ -10,6 +10,7 @@ using System.Data;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System.Web.UI.WebControls;
+using TelerikMvcApp1.Data.Northwind;
 
 namespace TelerikMvcApp1.Controllers
 {
@@ -17,6 +18,7 @@ namespace TelerikMvcApp1.Controllers
     {
         private readonly Data.Registrar.RegistrarEntities1 regEnt = new Data.Registrar.RegistrarEntities1();
         private readonly Data.CanvasAPI.CanvasAPIEntities1 canEnt = new Data.CanvasAPI.CanvasAPIEntities1();
+        private readonly Data.Northwind.NorthwindEntities _nwEnt = new NorthwindEntities();
 
         
         
@@ -24,7 +26,7 @@ namespace TelerikMvcApp1.Controllers
         {
             //ViewBag.Message = "Welcome to ASP.NET MVC!";
 
-            var classYear = regEnt.vw_Matri_Grad_Dates
+            var classYear = _nwEnt.vw_Matri_Grad_Dates
                 .Where(c => c.campuscode == "cwru")
                 .Where(c => c.Prog_status == "AC" || c.Prog_status == "LA")
                 .GroupBy(c => c.gyr)
@@ -141,7 +143,7 @@ namespace TelerikMvcApp1.Controllers
 
             if (society == "All")
             {
-                var allByYear = canEnt.v_studentsAll
+                var allByYear = _nwEnt.v_studentsAll
                     .Where(x => x.gyr == classYear)
                     .Where(x => x.Prog_status == "AC")
                     .OrderBy(x => x.Emplid)
@@ -154,7 +156,7 @@ namespace TelerikMvcApp1.Controllers
 
 
 
-                var loaByYear = canEnt.v_studentsAll
+                var loaByYear = _nwEnt.v_studentsAll
                     .Where(c => c.campuscode == "cwru")
                     .Where(c => c.Prog_status == "LA" || (c.Prog_status == "AC" && c.reduced_fee == "y"))
                     .OrderBy(c => c.Emplid)
@@ -165,7 +167,7 @@ namespace TelerikMvcApp1.Controllers
                     .Select(c => Int32.Parse(c))
                     .ToList();
 
-                var allPersonalInfo = canEnt.v_studentsAll
+                var allPersonalInfo = _nwEnt.v_studentsAll
                     .Where(x => allByYear.Contains(x.Emplid) || loaByYear.Contains(x.Emplid))
                     .OrderBy(x => x.Last_Name)
                     .Select(x => new { Name = x.studentname, Value = x.emaddr })
@@ -176,7 +178,7 @@ namespace TelerikMvcApp1.Controllers
 
             if (classYear == "LOA" || classYear == "PHD")
             {
-                var loaByYear = canEnt.v_studentsAll
+                var loaByYear = _nwEnt.v_studentsAll
                     .Where(c => c.campuscode == "cwru")
                     .Where(c => c.Prog_status == "LA" || (c.Prog_status == "AC" && c.reduced_fee == "y"))
                     .OrderBy(c => c.Emplid)
@@ -187,7 +189,7 @@ namespace TelerikMvcApp1.Controllers
                     .Select(c => Int32.Parse(c))
                     .ToList();
 
-                var loaBySociety = canEnt.v_StudentsSOM
+                var loaBySociety = _nwEnt.v_StudentsSOM
                     .Where(x => x.advisor_society.Contains(society))
                     .Where(x => loaByYear.Contains(x.Emplid))
                     .Select(x => x.Emplid)
@@ -197,7 +199,7 @@ namespace TelerikMvcApp1.Controllers
                     .Select(c => Int32.Parse(c))
                     .ToList();
 
-                var loaPersonalInfo = canEnt.v_studentsAll
+                var loaPersonalInfo = _nwEnt.v_studentsAll
                     .Where(x => loaBySociety.Contains(x.Emplid) && (loaByYear.Contains(x.Emplid)))
                     .OrderBy(x => x.Last_Name)
                     .Select(x => new { Name = x.studentname, Value = x.emaddr })
@@ -208,7 +210,7 @@ namespace TelerikMvcApp1.Controllers
 
             }
 
-            var gradsByYear = canEnt.v_StudentsSOM
+            var gradsByYear = _nwEnt.v_StudentsSOM
                    .Where(x => x.gyr == classYear)
                    .Where(x => x.advisor_society.Contains(society))
                    .Where(x => x.Prog_status == "AC")
@@ -220,7 +222,7 @@ namespace TelerikMvcApp1.Controllers
                 .Select(x => Int32.Parse(x))
                 .ToList();
 
-            var personalInfo = canEnt.v_studentsAll
+            var personalInfo = _nwEnt.v_studentsAll
                 .Where(x => gradsByYear.Contains(x.Emplid))
                 .OrderBy(x => x.Last_Name)
                 .Select(x => new { Name = x.studentname, Value = x.emaddr })

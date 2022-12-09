@@ -33,5 +33,12 @@ namespace TelerikMvcApp1.Data.Northwind
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<AdvisoryNote> AdvisoryNotes { get; set; }
+        public virtual DbSet<AdvisorySociety> AdvisorySocieties { get; set; }
+        public virtual DbSet<Personal> Personals { get; set; }
+        public virtual DbSet<Student_Misc> Student_Misc { get; set; }
+        public virtual DbSet<vw_Matri_Grad_Dates> vw_Matri_Grad_Dates { get; set; }
+        public virtual DbSet<v_studentsAll> v_studentsAll { get; set; }
+        public virtual DbSet<v_StudentsSOM> v_StudentsSOM { get; set; }
     }
 }

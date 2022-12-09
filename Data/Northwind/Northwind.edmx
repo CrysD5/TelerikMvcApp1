@@ -4,7 +4,34 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdvisoryNotes">
+          <Key>
+            <PropertyRef Name="nid" />
+          </Key>
+          <Property Name="nid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emaddr" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="edate" Type="datetime" Nullable="false" />
+          <Property Name="adlogin" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="etitle" Type="char" MaxLength="200" Nullable="false" />
+          <Property Name="enotes" Type="text" />
+          <Property Name="notefile" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="AdvisorySociety">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="Society_Name" Type="char" MaxLength="50" />
+          <Property Name="Advisor_Days" Type="int" />
+          <Property Name="Advisor_Email" Type="char" MaxLength="10" />
+          <Property Name="Advisor_ID" Type="char" MaxLength="11" />
+          <Property Name="Advisor_Years" Type="char" MaxLength="20" />
+          <Property Name="Advisor_Address" Type="varchar" MaxLength="400" />
+          <Property Name="Advisor_phone" Type="char" MaxLength="13" />
+          <Property Name="Advisor_Name" Type="varchar" MaxLength="70" />
+          <Property Name="Advisor_EmailAddress" Type="varchar" MaxLength="70" />
+        </EntityType>
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -55,6 +82,45 @@
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="ShipperID" Type="int" />
         </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Last_Name" Type="char" MaxLength="30" />
+          <Property Name="First_Name" Type="char" MaxLength="30" />
+          <Property Name="Middle_Name" Type="char" MaxLength="30" />
+          <Property Name="CW_PREF_LAST_NAME" Type="char" MaxLength="50" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="char" MaxLength="30" />
+          <Property Name="CW_PREF_MID_NAME" Type="char" MaxLength="30" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="Visa_Permit_Type" Type="char" MaxLength="3" />
+          <Property Name="BirthCountry" Type="char" MaxLength="3" />
+          <Property Name="Citizen_Country" Type="char" MaxLength="3" />
+          <Property Name="Address1" Type="char" MaxLength="55" />
+          <Property Name="Address2" Type="char" MaxLength="55" />
+          <Property Name="City" Type="char" MaxLength="30" />
+          <Property Name="County" Type="char" MaxLength="30" />
+          <Property Name="State" Type="char" MaxLength="6" />
+          <Property Name="Postal" Type="char" MaxLength="12" />
+          <Property Name="Country" Type="char" MaxLength="3" />
+          <Property Name="Phone" Type="char" MaxLength="24" />
+          <Property Name="Extension" Type="char" MaxLength="6" />
+          <Property Name="Address1_Other" Type="char" MaxLength="55" />
+          <Property Name="Address2_Other" Type="char" MaxLength="55" />
+          <Property Name="City_Other" Type="char" MaxLength="30" />
+          <Property Name="State_Other" Type="char" MaxLength="6" />
+          <Property Name="Postal_Other" Type="char" MaxLength="12" />
+          <Property Name="Country_Other" Type="char" MaxLength="3" />
+          <Property Name="CW_Phone_Other" Type="char" MaxLength="24" />
+          <Property Name="CW_Extension" Type="char" MaxLength="6" />
+          <Property Name="Email_Addr" Type="char" MaxLength="70" />
+          <Property Name="Campus_Id" Type="char" MaxLength="16" />
+          <Property Name="CW_CELL_PHONE" Type="char" MaxLength="24" />
+          <Property Name="CW_CC_GIC_DESCR" Type="varchar" MaxLength="50" />
+          <Property Name="CW_CC_PRONOUN_DESCR" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -74,6 +140,30 @@
           <Property Name="ShipperName" Type="varchar" MaxLength="25" />
           <Property Name="Phone" Type="varchar" MaxLength="15" />
         </EntityType>
+        <EntityType Name="Student_Misc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="emaddr" Type="char" MaxLength="16" />
+          <Property Name="stpict" Type="char" MaxLength="100" />
+          <Property Name="stsound" Type="char" MaxLength="100" />
+          <Property Name="aamc_id" Type="char" MaxLength="10" />
+          <Property Name="History_comments" Type="varchar(max)" />
+          <Property Name="reduced_fee" Type="char" MaxLength="1" />
+          <Property Name="mdt" Type="char" MaxLength="10" />
+          <Property Name="leave_reason" Type="char" MaxLength="20" />
+          <Property Name="leave_start_date" Type="char" MaxLength="10" />
+          <Property Name="leave_end_date" Type="char" MaxLength="10" />
+          <Property Name="mdt_yr1" Type="datetime" />
+          <Property Name="mdt_yr2" Type="datetime" />
+          <Property Name="mdt_yr3" Type="datetime" />
+          <Property Name="mdt_yr4" Type="datetime" />
+          <Property Name="mdt_yr5" Type="datetime" />
+          <Property Name="admission_ethnicity" Type="nvarchar(max)" />
+          <Property Name="admission_race" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Suppliers">
           <Key>
             <PropertyRef Name="SupplierID" />
@@ -87,7 +177,102 @@
           <Property Name="Country" Type="varchar" MaxLength="15" />
           <Property Name="Phone" Type="varchar" MaxLength="15" />
         </EntityType>
-        <Association Name="FK__OrderDeta__Order__22AA2996">
+        <EntityType Name="vw_Matri_Grad_Dates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="emaddr" Type="char" MaxLength="16" />
+          <Property Name="Acad_Prog" Type="char" MaxLength="5" />
+          <Property Name="campuscode" Type="char" MaxLength="5" />
+          <Property Name="exp_grad_year" Type="char" MaxLength="4" />
+          <Property Name="mdyr" Type="char" MaxLength="4" />
+          <Property Name="mdt" Type="char" MaxLength="10" />
+          <Property Name="gyr" Type="char" MaxLength="4" />
+          <Property Name="gdt" Type="datetime" />
+          <Property Name="Effdt" Type="datetime" />
+          <Property Name="desk" Type="char" MaxLength="10" />
+          <Property Name="advisor_name" Type="char" MaxLength="70" />
+          <Property Name="advisor_email" Type="char" MaxLength="70" />
+          <Property Name="advisor_campus_id" Type="char" MaxLength="16" />
+          <Property Name="Prog_status" Type="char" MaxLength="4" />
+          <Property Name="dcode" Type="varchar(max)" />
+          <Property Name="ethnicity" Type="varchar" MaxLength="100" />
+          <Property Name="priordegrees" Type="varchar(max)" />
+          <Property Name="mstpprog_status" Type="char" MaxLength="4" />
+          <Property Name="advisor_society" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Northwind.dbo.v_studentsAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_studentsAll">
+          <Key>
+            <PropertyRef Name="Emplid" />
+            <PropertyRef Name="reduced_fee" />
+          </Key>
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Last_Name" Type="char" MaxLength="30" />
+          <Property Name="First_Name" Type="char" MaxLength="30" />
+          <Property Name="Middle_Name" Type="char" MaxLength="30" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="Ethnic_Grp_CD" Type="varchar" MaxLength="100" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="studentname" Type="varchar" MaxLength="98" />
+          <Property Name="Email_Addr" Type="char" MaxLength="70" />
+          <Property Name="emaddr" Type="char" MaxLength="16" />
+          <Property Name="mdyr" Type="char" MaxLength="4" />
+          <Property Name="gyr" Type="char" MaxLength="4" />
+          <Property Name="campuscode" Type="char" MaxLength="5" />
+          <Property Name="Acad_Prog" Type="char" MaxLength="5" />
+          <Property Name="desk" Type="char" MaxLength="10" />
+          <Property Name="advisor_name" Type="char" MaxLength="70" />
+          <Property Name="advisor_email" Type="char" MaxLength="70" />
+          <Property Name="advisor_campus_id" Type="char" MaxLength="16" />
+          <Property Name="Prog_status" Type="char" MaxLength="4" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="char" MaxLength="30" />
+          <Property Name="reduced_fee" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="gender_identity" Type="varchar" MaxLength="50" />
+          <Property Name="gender_pronoun" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Northwind.dbo.v_StudentsSOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_StudentsSOM">
+          <Key>
+            <PropertyRef Name="gyr" />
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="case_id" Type="char" MaxLength="16" />
+          <Property Name="Last_Name" Type="char" MaxLength="30" />
+          <Property Name="First_Name" Type="char" MaxLength="30" />
+          <Property Name="Middle_Name" Type="char" MaxLength="30" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="char" MaxLength="30" />
+          <Property Name="gyr" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="seyear" Type="varchar" MaxLength="4" />
+          <Property Name="mdyr" Type="char" MaxLength="4" />
+          <Property Name="campuscode" Type="char" MaxLength="5" />
+          <Property Name="stpict" Type="char" MaxLength="100" />
+          <Property Name="advisor_name" Type="char" MaxLength="70" />
+          <Property Name="advisor_email" Type="char" MaxLength="70" />
+          <Property Name="advisor_campus_id" Type="char" MaxLength="16" />
+          <Property Name="advisor_society" Type="char" MaxLength="50" />
+          <Property Name="advisor_society_id" Type="int" />
+          <Property Name="Emplid" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="desk" Type="char" MaxLength="10" />
+          <Property Name="Acad_Prog" Type="char" MaxLength="5" />
+          <Property Name="Prog_status" Type="char" MaxLength="4" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="dcode" Type="varchar(max)" />
+          <Property Name="stsound" Type="char" MaxLength="100" />
+          <Property Name="Phone" Type="char" MaxLength="24" />
+          <Property Name="Extension" Type="char" MaxLength="6" />
+          <Property Name="aamc_id" Type="char" MaxLength="10" />
+          <Property Name="ethnicity" Type="varchar" MaxLength="100" />
+          <Property Name="Email_Addr" Type="char" MaxLength="70" />
+          <Property Name="gender_identity" Type="varchar" MaxLength="50" />
+          <Property Name="gender_pronoun" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__OrderDeta__Order__36B12243">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Produ__239E4DCF">
+        <Association Name="FK__OrderDeta__Produ__37A5467C">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Customer__1ED998B2">
+        <Association Name="FK__Orders__Customer__32E0915F">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -123,7 +308,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Employee__1DE57479">
+        <Association Name="FK__Orders__Employee__31EC6D26">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,7 +320,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__ShipperI__1FCDBCEB">
+        <Association Name="FK__Orders__ShipperI__33D4B598">
           <End Role="Shippers" Type="Self.Shippers" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -147,7 +332,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Catego__1A14E395">
+        <Association Name="FK__Products__Catego__2E1BDC42">
           <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -159,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Suppli__1B0907CE">
+        <Association Name="FK__Products__Suppli__2F10007B">
           <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,45 +357,110 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NorthwindModelStoreContainer">
+          <EntitySet Name="AdvisoryNotes" EntityType="Self.AdvisoryNotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvisorySociety" EntityType="Self.AdvisorySociety" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shippers" EntityType="Self.Shippers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Misc" EntityType="Self.Student_Misc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderDeta__Order__22AA2996" Association="Self.FK__OrderDeta__Order__22AA2996">
+          <EntitySet Name="vw_Matri_Grad_Dates" EntityType="Self.vw_Matri_Grad_Dates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_studentsAll" EntityType="Self.v_studentsAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_studentsAll].[Emplid] AS [Emplid], 
+    [v_studentsAll].[Last_Name] AS [Last_Name], 
+    [v_studentsAll].[First_Name] AS [First_Name], 
+    [v_studentsAll].[Middle_Name] AS [Middle_Name], 
+    [v_studentsAll].[Sex] AS [Sex], 
+    [v_studentsAll].[Ethnic_Grp_CD] AS [Ethnic_Grp_CD], 
+    [v_studentsAll].[BIRTHDATE] AS [BIRTHDATE], 
+    [v_studentsAll].[studentname] AS [studentname], 
+    [v_studentsAll].[Email_Addr] AS [Email_Addr], 
+    [v_studentsAll].[emaddr] AS [emaddr], 
+    [v_studentsAll].[mdyr] AS [mdyr], 
+    [v_studentsAll].[gyr] AS [gyr], 
+    [v_studentsAll].[campuscode] AS [campuscode], 
+    [v_studentsAll].[Acad_Prog] AS [Acad_Prog], 
+    [v_studentsAll].[desk] AS [desk], 
+    [v_studentsAll].[advisor_name] AS [advisor_name], 
+    [v_studentsAll].[advisor_email] AS [advisor_email], 
+    [v_studentsAll].[advisor_campus_id] AS [advisor_campus_id], 
+    [v_studentsAll].[Prog_status] AS [Prog_status], 
+    [v_studentsAll].[CW_PREF_FIRST_NAME] AS [CW_PREF_FIRST_NAME], 
+    [v_studentsAll].[reduced_fee] AS [reduced_fee], 
+    [v_studentsAll].[gender_identity] AS [gender_identity], 
+    [v_studentsAll].[gender_pronoun] AS [gender_pronoun]
+    FROM [dbo].[v_studentsAll] AS [v_studentsAll]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_StudentsSOM" EntityType="Self.v_StudentsSOM" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_StudentsSOM].[case_id] AS [case_id], 
+    [v_StudentsSOM].[Last_Name] AS [Last_Name], 
+    [v_StudentsSOM].[First_Name] AS [First_Name], 
+    [v_StudentsSOM].[Middle_Name] AS [Middle_Name], 
+    [v_StudentsSOM].[CW_PREF_FIRST_NAME] AS [CW_PREF_FIRST_NAME], 
+    [v_StudentsSOM].[gyr] AS [gyr], 
+    [v_StudentsSOM].[seyear] AS [seyear], 
+    [v_StudentsSOM].[mdyr] AS [mdyr], 
+    [v_StudentsSOM].[campuscode] AS [campuscode], 
+    [v_StudentsSOM].[stpict] AS [stpict], 
+    [v_StudentsSOM].[advisor_name] AS [advisor_name], 
+    [v_StudentsSOM].[advisor_email] AS [advisor_email], 
+    [v_StudentsSOM].[advisor_campus_id] AS [advisor_campus_id], 
+    [v_StudentsSOM].[advisor_society] AS [advisor_society], 
+    [v_StudentsSOM].[advisor_society_id] AS [advisor_society_id], 
+    [v_StudentsSOM].[Emplid] AS [Emplid], 
+    [v_StudentsSOM].[desk] AS [desk], 
+    [v_StudentsSOM].[Acad_Prog] AS [Acad_Prog], 
+    [v_StudentsSOM].[Prog_status] AS [Prog_status], 
+    [v_StudentsSOM].[Sex] AS [Sex], 
+    [v_StudentsSOM].[BIRTHDATE] AS [BIRTHDATE], 
+    [v_StudentsSOM].[dcode] AS [dcode], 
+    [v_StudentsSOM].[stsound] AS [stsound], 
+    [v_StudentsSOM].[Phone] AS [Phone], 
+    [v_StudentsSOM].[Extension] AS [Extension], 
+    [v_StudentsSOM].[aamc_id] AS [aamc_id], 
+    [v_StudentsSOM].[ethnicity] AS [ethnicity], 
+    [v_StudentsSOM].[Email_Addr] AS [Email_Addr], 
+    [v_StudentsSOM].[gender_identity] AS [gender_identity], 
+    [v_StudentsSOM].[gender_pronoun] AS [gender_pronoun]
+    FROM [dbo].[v_StudentsSOM] AS [v_StudentsSOM]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__OrderDeta__Order__36B12243" Association="Self.FK__OrderDeta__Order__36B12243">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Produ__239E4DCF" Association="Self.FK__OrderDeta__Produ__239E4DCF">
+          <AssociationSet Name="FK__OrderDeta__Produ__37A5467C" Association="Self.FK__OrderDeta__Produ__37A5467C">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Customer__1ED998B2" Association="Self.FK__Orders__Customer__1ED998B2">
+          <AssociationSet Name="FK__Orders__Customer__32E0915F" Association="Self.FK__Orders__Customer__32E0915F">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Employee__1DE57479" Association="Self.FK__Orders__Employee__1DE57479">
+          <AssociationSet Name="FK__Orders__Employee__31EC6D26" Association="Self.FK__Orders__Employee__31EC6D26">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__ShipperI__1FCDBCEB" Association="Self.FK__Orders__ShipperI__1FCDBCEB">
+          <AssociationSet Name="FK__Orders__ShipperI__33D4B598" Association="Self.FK__Orders__ShipperI__33D4B598">
             <End Role="Shippers" EntitySet="Shippers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Catego__1A14E395" Association="Self.FK__Products__Catego__1A14E395">
+          <AssociationSet Name="FK__Products__Catego__2E1BDC42" Association="Self.FK__Products__Catego__2E1BDC42">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Suppli__1B0907CE" Association="Self.FK__Products__Suppli__1B0907CE">
+          <AssociationSet Name="FK__Products__Suppli__2F10007B" Association="Self.FK__Products__Suppli__2F10007B">
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -431,7 +681,195 @@
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="AdvisoryNotes" EntityType="NorthwindModel.AdvisoryNote" />
+          <EntitySet Name="AdvisorySocieties" EntityType="NorthwindModel.AdvisorySociety" />
+          <EntitySet Name="Personals" EntityType="NorthwindModel.Personal" />
+          <EntitySet Name="Student_Misc" EntityType="NorthwindModel.Student_Misc" />
+          <EntitySet Name="vw_Matri_Grad_Dates" EntityType="NorthwindModel.vw_Matri_Grad_Dates" />
+          <EntitySet Name="v_studentsAll" EntityType="NorthwindModel.v_studentsAll" />
+          <EntitySet Name="v_StudentsSOM" EntityType="NorthwindModel.v_StudentsSOM" />
         </EntityContainer>
+        <EntityType Name="AdvisoryNote">
+          <Key>
+            <PropertyRef Name="nid" />
+          </Key>
+          <Property Name="nid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emaddr" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="edate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="adlogin" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="etitle" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="false" />
+          <Property Name="enotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="notefile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AdvisorySociety">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="Society_Name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Advisor_Days" Type="Int32" />
+          <Property Name="Advisor_Email" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Advisor_ID" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Advisor_Years" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Advisor_Address" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Advisor_phone" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Advisor_Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Advisor_EmailAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="Emplid" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_LAST_NAME" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_MID_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="Visa_Permit_Type" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="BirthCountry" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Citizen_Country" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Postal" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="Extension" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Address1_Other" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+          <Property Name="Address2_Other" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+          <Property Name="City_Other" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="State_Other" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Postal_Other" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="Country_Other" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CW_Phone_Other" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="CW_Extension" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Email_Addr" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="Campus_Id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="CW_CELL_PHONE" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="CW_CC_GIC_DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CW_CC_PRONOUN_DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Student_Misc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emplid" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="emaddr" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="stpict" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="stsound" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="aamc_id" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="History_comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="reduced_fee" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="mdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="leave_reason" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="leave_start_date" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="leave_end_date" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="mdt_yr1" Type="DateTime" Precision="3" />
+          <Property Name="mdt_yr2" Type="DateTime" Precision="3" />
+          <Property Name="mdt_yr3" Type="DateTime" Precision="3" />
+          <Property Name="mdt_yr4" Type="DateTime" Precision="3" />
+          <Property Name="mdt_yr5" Type="DateTime" Precision="3" />
+          <Property Name="admission_ethnicity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="admission_race" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_Matri_Grad_Dates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emplid" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="emaddr" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Acad_Prog" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="campuscode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="exp_grad_year" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="mdyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="mdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="gyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="gdt" Type="DateTime" Precision="3" />
+          <Property Name="Effdt" Type="DateTime" Precision="3" />
+          <Property Name="desk" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_name" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_email" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_campus_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Prog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="dcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ethnicity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="priordegrees" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mstpprog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_studentsAll">
+          <Key>
+            <PropertyRef Name="Emplid" />
+            <PropertyRef Name="reduced_fee" />
+          </Key>
+          <Property Name="Emplid" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Ethnic_Grp_CD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="studentname" Type="String" MaxLength="98" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Addr" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="emaddr" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="mdyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="gyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="campuscode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Acad_Prog" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="desk" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_name" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_email" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_campus_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Prog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="reduced_fee" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="gender_identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender_pronoun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="v_StudentsSOM">
+          <Key>
+            <PropertyRef Name="gyr" />
+            <PropertyRef Name="Emplid" />
+          </Key>
+          <Property Name="case_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CW_PREF_FIRST_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="gyr" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="seyear" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="mdyr" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="campuscode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="stpict" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_name" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_email" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_campus_id" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="advisor_society_id" Type="Int32" />
+          <Property Name="Emplid" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="desk" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Acad_Prog" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Prog_status" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="dcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="stsound" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="Extension" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="aamc_id" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ethnicity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Addr" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="gender_identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender_pronoun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -525,6 +963,192 @@
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvisoryNotes">
+            <EntityTypeMapping TypeName="NorthwindModel.AdvisoryNote">
+              <MappingFragment StoreEntitySet="AdvisoryNotes">
+                <ScalarProperty Name="notefile" ColumnName="notefile" />
+                <ScalarProperty Name="enotes" ColumnName="enotes" />
+                <ScalarProperty Name="etitle" ColumnName="etitle" />
+                <ScalarProperty Name="adlogin" ColumnName="adlogin" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="nid" ColumnName="nid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvisorySocieties">
+            <EntityTypeMapping TypeName="NorthwindModel.AdvisorySociety">
+              <MappingFragment StoreEntitySet="AdvisorySociety">
+                <ScalarProperty Name="Advisor_EmailAddress" ColumnName="Advisor_EmailAddress" />
+                <ScalarProperty Name="Advisor_Name" ColumnName="Advisor_Name" />
+                <ScalarProperty Name="Advisor_phone" ColumnName="Advisor_phone" />
+                <ScalarProperty Name="Advisor_Address" ColumnName="Advisor_Address" />
+                <ScalarProperty Name="Advisor_Years" ColumnName="Advisor_Years" />
+                <ScalarProperty Name="Advisor_ID" ColumnName="Advisor_ID" />
+                <ScalarProperty Name="Advisor_Email" ColumnName="Advisor_Email" />
+                <ScalarProperty Name="Advisor_Days" ColumnName="Advisor_Days" />
+                <ScalarProperty Name="Society_Name" ColumnName="Society_Name" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personals">
+            <EntityTypeMapping TypeName="NorthwindModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="CW_CC_PRONOUN_DESCR" ColumnName="CW_CC_PRONOUN_DESCR" />
+                <ScalarProperty Name="CW_CC_GIC_DESCR" ColumnName="CW_CC_GIC_DESCR" />
+                <ScalarProperty Name="CW_CELL_PHONE" ColumnName="CW_CELL_PHONE" />
+                <ScalarProperty Name="Campus_Id" ColumnName="Campus_Id" />
+                <ScalarProperty Name="Email_Addr" ColumnName="Email_Addr" />
+                <ScalarProperty Name="CW_Extension" ColumnName="CW_Extension" />
+                <ScalarProperty Name="CW_Phone_Other" ColumnName="CW_Phone_Other" />
+                <ScalarProperty Name="Country_Other" ColumnName="Country_Other" />
+                <ScalarProperty Name="Postal_Other" ColumnName="Postal_Other" />
+                <ScalarProperty Name="State_Other" ColumnName="State_Other" />
+                <ScalarProperty Name="City_Other" ColumnName="City_Other" />
+                <ScalarProperty Name="Address2_Other" ColumnName="Address2_Other" />
+                <ScalarProperty Name="Address1_Other" ColumnName="Address1_Other" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Postal" ColumnName="Postal" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Citizen_Country" ColumnName="Citizen_Country" />
+                <ScalarProperty Name="BirthCountry" ColumnName="BirthCountry" />
+                <ScalarProperty Name="Visa_Permit_Type" ColumnName="Visa_Permit_Type" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="CW_PREF_MID_NAME" ColumnName="CW_PREF_MID_NAME" />
+                <ScalarProperty Name="CW_PREF_FIRST_NAME" ColumnName="CW_PREF_FIRST_NAME" />
+                <ScalarProperty Name="CW_PREF_LAST_NAME" ColumnName="CW_PREF_LAST_NAME" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Misc">
+            <EntityTypeMapping TypeName="NorthwindModel.Student_Misc">
+              <MappingFragment StoreEntitySet="Student_Misc">
+                <ScalarProperty Name="admission_race" ColumnName="admission_race" />
+                <ScalarProperty Name="admission_ethnicity" ColumnName="admission_ethnicity" />
+                <ScalarProperty Name="mdt_yr5" ColumnName="mdt_yr5" />
+                <ScalarProperty Name="mdt_yr4" ColumnName="mdt_yr4" />
+                <ScalarProperty Name="mdt_yr3" ColumnName="mdt_yr3" />
+                <ScalarProperty Name="mdt_yr2" ColumnName="mdt_yr2" />
+                <ScalarProperty Name="mdt_yr1" ColumnName="mdt_yr1" />
+                <ScalarProperty Name="leave_end_date" ColumnName="leave_end_date" />
+                <ScalarProperty Name="leave_start_date" ColumnName="leave_start_date" />
+                <ScalarProperty Name="leave_reason" ColumnName="leave_reason" />
+                <ScalarProperty Name="mdt" ColumnName="mdt" />
+                <ScalarProperty Name="reduced_fee" ColumnName="reduced_fee" />
+                <ScalarProperty Name="History_comments" ColumnName="History_comments" />
+                <ScalarProperty Name="aamc_id" ColumnName="aamc_id" />
+                <ScalarProperty Name="stsound" ColumnName="stsound" />
+                <ScalarProperty Name="stpict" ColumnName="stpict" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="emplid" ColumnName="emplid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Matri_Grad_Dates">
+            <EntityTypeMapping TypeName="NorthwindModel.vw_Matri_Grad_Dates">
+              <MappingFragment StoreEntitySet="vw_Matri_Grad_Dates">
+                <ScalarProperty Name="advisor_society" ColumnName="advisor_society" />
+                <ScalarProperty Name="mstpprog_status" ColumnName="mstpprog_status" />
+                <ScalarProperty Name="priordegrees" ColumnName="priordegrees" />
+                <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+                <ScalarProperty Name="dcode" ColumnName="dcode" />
+                <ScalarProperty Name="Prog_status" ColumnName="Prog_status" />
+                <ScalarProperty Name="advisor_campus_id" ColumnName="advisor_campus_id" />
+                <ScalarProperty Name="advisor_email" ColumnName="advisor_email" />
+                <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="Effdt" ColumnName="Effdt" />
+                <ScalarProperty Name="gdt" ColumnName="gdt" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="mdt" ColumnName="mdt" />
+                <ScalarProperty Name="mdyr" ColumnName="mdyr" />
+                <ScalarProperty Name="exp_grad_year" ColumnName="exp_grad_year" />
+                <ScalarProperty Name="campuscode" ColumnName="campuscode" />
+                <ScalarProperty Name="Acad_Prog" ColumnName="Acad_Prog" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_studentsAll">
+            <EntityTypeMapping TypeName="NorthwindModel.v_studentsAll">
+              <MappingFragment StoreEntitySet="v_studentsAll">
+                <ScalarProperty Name="gender_pronoun" ColumnName="gender_pronoun" />
+                <ScalarProperty Name="gender_identity" ColumnName="gender_identity" />
+                <ScalarProperty Name="reduced_fee" ColumnName="reduced_fee" />
+                <ScalarProperty Name="CW_PREF_FIRST_NAME" ColumnName="CW_PREF_FIRST_NAME" />
+                <ScalarProperty Name="Prog_status" ColumnName="Prog_status" />
+                <ScalarProperty Name="advisor_campus_id" ColumnName="advisor_campus_id" />
+                <ScalarProperty Name="advisor_email" ColumnName="advisor_email" />
+                <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="Acad_Prog" ColumnName="Acad_Prog" />
+                <ScalarProperty Name="campuscode" ColumnName="campuscode" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="mdyr" ColumnName="mdyr" />
+                <ScalarProperty Name="emaddr" ColumnName="emaddr" />
+                <ScalarProperty Name="Email_Addr" ColumnName="Email_Addr" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="Ethnic_Grp_CD" ColumnName="Ethnic_Grp_CD" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_StudentsSOM">
+            <EntityTypeMapping TypeName="NorthwindModel.v_StudentsSOM">
+              <MappingFragment StoreEntitySet="v_StudentsSOM">
+                <ScalarProperty Name="gender_pronoun" ColumnName="gender_pronoun" />
+                <ScalarProperty Name="gender_identity" ColumnName="gender_identity" />
+                <ScalarProperty Name="Email_Addr" ColumnName="Email_Addr" />
+                <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+                <ScalarProperty Name="aamc_id" ColumnName="aamc_id" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="stsound" ColumnName="stsound" />
+                <ScalarProperty Name="dcode" ColumnName="dcode" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Prog_status" ColumnName="Prog_status" />
+                <ScalarProperty Name="Acad_Prog" ColumnName="Acad_Prog" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+                <ScalarProperty Name="advisor_society_id" ColumnName="advisor_society_id" />
+                <ScalarProperty Name="advisor_society" ColumnName="advisor_society" />
+                <ScalarProperty Name="advisor_campus_id" ColumnName="advisor_campus_id" />
+                <ScalarProperty Name="advisor_email" ColumnName="advisor_email" />
+                <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+                <ScalarProperty Name="stpict" ColumnName="stpict" />
+                <ScalarProperty Name="campuscode" ColumnName="campuscode" />
+                <ScalarProperty Name="mdyr" ColumnName="mdyr" />
+                <ScalarProperty Name="seyear" ColumnName="seyear" />
+                <ScalarProperty Name="gyr" ColumnName="gyr" />
+                <ScalarProperty Name="CW_PREF_FIRST_NAME" ColumnName="CW_PREF_FIRST_NAME" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
