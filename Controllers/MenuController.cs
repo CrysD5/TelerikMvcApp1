@@ -9,10 +9,10 @@ namespace TelerikMvcApp1.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
-        public ActionResult TopMenu()
-        {
-            return View();
-        }
+        // public ActionResult TopMenu()
+        // {
+        //     return View();
+        // }
 
         public JsonResult GetIndiStudentInfo()
         {

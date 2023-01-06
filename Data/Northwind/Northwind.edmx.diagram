@@ -20,6 +20,13 @@
         <AssociationConnector Association="NorthwindModel.FK__OrderDeta__Produ__239E4DCF" ManuallyRouted="false" />
         <AssociationConnector Association="NorthwindModel.FK__Orders__ShipperI__1FCDBCEB" ManuallyRouted="false" />
         <AssociationConnector Association="NorthwindModel.FK__Products__Suppli__1B0907CE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NorthwindModel.AdvisoryNote" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="NorthwindModel.AdvisorySociety" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="NorthwindModel.Personal" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="NorthwindModel.Student_Misc" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="NorthwindModel.vw_Matri_Grad_Dates" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="NorthwindModel.v_studentsAll" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="NorthwindModel.v_StudentsSOM" Width="1.5" PointX="11.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

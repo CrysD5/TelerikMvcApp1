@@ -18,7 +18,8 @@ namespace TelerikMvcApp1.Controllers
         private readonly Data.Registrar.RegistrarEntities1 _regEnt = new Data.Registrar.RegistrarEntities1();
         private readonly Data.CanvasAPI.CanvasAPIEntities1 _canvasAPIEntities1 = new Data.CanvasAPI.CanvasAPIEntities1();
         //private readonly Data.Easel.EaselEntities EaselEntities = new Data.Easel.EaselEntities();
-        private readonly Data.Easel.Entities _easelEntities = new Data.Easel.Entities();
+        private readonly Data.Easel.Entities EaselEntities = new Data.Easel.Entities();
+        private readonly Data.Northwind.NorthwindEntities _nwEnt = new NorthwindEntities();
 
         public ActionResult Customers_Read([DataSourceRequest] DataSourceRequest request)
         {
@@ -50,10 +51,8 @@ namespace TelerikMvcApp1.Controllers
 
         public ActionResult DeanNotes_Read([DataSourceRequest] DataSourceRequest request)
         {
-            //var student = "mja122";
-            var studentCaseId = String.Empty;
-            if (Session["students"] != null)
-                studentCaseId = Session["students"].ToString();
+            var student = "mja122";
+
 
             var result = _regEnt.AdvisoryNotes.Where(x => x.emaddr == studentCaseId).Select(x => new DeanNotesModel()
             {
