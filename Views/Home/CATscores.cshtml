@@ -4,7 +4,7 @@
             .Name("notesGrid")
             .Columns(columns =>
             {
-                //columns.Bound(c => c.emaddr);
+                columns.Bound(c => c.emaddr).Width(100);
                 columns.Bound(c=>c.edate).Width(130).Format("{0:MM/dd/yyyy}");
                 columns.Bound(c => c.etitle).Width(150);
                 columns.Bound(c => c.enotes).Width(1400);

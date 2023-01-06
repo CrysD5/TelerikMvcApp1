@@ -15,5 +15,6 @@ namespace TelerikMvcApp1.Models
         public string etitle { get; set; }
         public string enotes { get; set; }
         public string notefile { get; set; }
+        public string studentCaseId { get; set; }
     }
 }

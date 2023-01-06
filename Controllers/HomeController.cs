@@ -85,12 +85,13 @@ namespace TelerikMvcApp1.Controllers
 
             return rRep;
         }
-        public string SaveSelectedStudent(string StudentName)
+        /*public string SaveSelectedStudent(string StudentName)
         {
             Session["selectedStudent"] = StudentName;
 
             return StudentName;
         }
+        */
 
 
         public JsonResult GetIndiStudentInfo()
@@ -131,6 +132,7 @@ namespace TelerikMvcApp1.Controllers
 
         public JsonResult GetStudentsDDL(string classYear, string society)
         {
+         
 
             if (Session["classYear"] != null)
                 classYear = Session["classYear"].ToString();
@@ -168,7 +170,7 @@ namespace TelerikMvcApp1.Controllers
                 var allPersonalInfo = canEnt.v_studentsAll
                     .Where(x => allByYear.Contains(x.Emplid) || loaByYear.Contains(x.Emplid))
                     .OrderBy(x => x.Last_Name)
-                    .Select(x => new { Name = x.studentname, Value = x.emaddr })
+                    .Select(x => new { Name = x.studentname, Value = x.emaddr.Trim() })
                     .ToList();
 
                 return Json(allPersonalInfo, JsonRequestBehavior.AllowGet);
@@ -200,7 +202,7 @@ namespace TelerikMvcApp1.Controllers
                 var loaPersonalInfo = canEnt.v_studentsAll
                     .Where(x => loaBySociety.Contains(x.Emplid) && (loaByYear.Contains(x.Emplid)))
                     .OrderBy(x => x.Last_Name)
-                    .Select(x => new { Name = x.studentname, Value = x.emaddr })
+                    .Select(x => new { Name = x.studentname, Value = x.emaddr.Trim() })
                     .ToList();
 
                 return Json(loaPersonalInfo, JsonRequestBehavior.AllowGet);
@@ -223,7 +225,7 @@ namespace TelerikMvcApp1.Controllers
             var personalInfo = canEnt.v_studentsAll
                 .Where(x => gradsByYear.Contains(x.Emplid))
                 .OrderBy(x => x.Last_Name)
-                .Select(x => new { Name = x.studentname, Value = x.emaddr })
+                .Select(x => new { Name = x.studentname, Value = x.emaddr.Trim() })
                 .ToList();
 
             return Json(personalInfo, JsonRequestBehavior.AllowGet);

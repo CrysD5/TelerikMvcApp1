@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-using Microsoft.AspNetCore.Mvc;
-using TelerikMvcApp1.Classes;
+//using Microsoft.AspNetCore.Mvc;
+//using TelerikMvcApp1.Classes;
 using TelerikMvcApp1.Data.Northwind;
 using TelerikMvcApp1.Models;
+using System.Collections.Generic;
+using TelerikMvcApp1.Controllers;
 
 namespace TelerikMvcApp1.Controllers
 {
-    public partial class GridController : Controller
+    public class GridController : Controller
     {
-        private readonly Data.Registrar.RegistrarEntities1 regEnt = new Data.Registrar.RegistrarEntities1();
-        private readonly Data.CanvasAPI.CanvasAPIEntities1 canvasAPIEntities1 = new Data.CanvasAPI.CanvasAPIEntities1();
+        private readonly Data.Registrar.RegistrarEntities1 _regEnt = new Data.Registrar.RegistrarEntities1();
+        private readonly Data.CanvasAPI.CanvasAPIEntities1 _canvasAPIEntities1 = new Data.CanvasAPI.CanvasAPIEntities1();
         //private readonly Data.Easel.EaselEntities EaselEntities = new Data.Easel.EaselEntities();
-        private readonly Data.Easel.Entities EaselEntities = new Data.Easel.Entities();
+        private readonly Data.Easel.Entities _easelEntities = new Data.Easel.Entities();
 
         public ActionResult Customers_Read([DataSourceRequest] DataSourceRequest request)
         {
@@ -40,7 +43,7 @@ namespace TelerikMvcApp1.Controllers
 
         public string GetStudCaseId(string studentCaseId)
         {
-            Session["stuCaseId"] = studentCaseId;
+            Session["students"] = studentCaseId;
 
             return studentCaseId;
         }
@@ -48,12 +51,14 @@ namespace TelerikMvcApp1.Controllers
         public ActionResult DeanNotes_Read([DataSourceRequest] DataSourceRequest request)
         {
             //var student = "mja122";
-            var student = stu
+            var studentCaseId = String.Empty;
+            if (Session["students"] != null)
+                studentCaseId = Session["students"].ToString();
 
-            var result = regEnt.AdvisoryNotes.Where(x => x.emaddr == student).Select(x => new Models.DeanNotesModel()
+            var result = _regEnt.AdvisoryNotes.Where(x => x.emaddr == studentCaseId).Select(x => new DeanNotesModel()
             {
                 Id = 1,
-                emaddr = x.emaddr,
+                studentCaseId = x.emaddr,
                 edate = x.edate,
                 adlogin = x.adlogin,
                 etitle = x.etitle,
@@ -63,12 +68,12 @@ namespace TelerikMvcApp1.Controllers
             return new JsonResult() { Data = result.ToDataSourceResult(request), MaxJsonLength = Int32.MaxValue };
         }
 
-
-
-        
-
-
-
-
+        /*public JsonResult IndividualStudent_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+                var caseID = Session[""]
+            }
+        }*/
     }
 } 

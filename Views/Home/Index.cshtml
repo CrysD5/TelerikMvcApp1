@@ -4,10 +4,11 @@
 @model TelerikMvcApp1.Models.User
 
 
+<!--suppress ALL -->
 <div class="placeholders">
-    <div class="row d-flex justify-content-start">
+    <div class="row d-flex justify-content-center">
 
-        <div class="col-md-3">
+        <div class="col-md-3" id="socDDL">
 
             <h2>Societies</h2>
             <p>
@@ -36,7 +37,7 @@
 
         </div>
 
-        <div class="col-md-3" id="gyr">
+        <div class="col-md-3" id="gyrDDL">
             <h2>Grad Years</h2>
             <p>
                 @(Html.Kendo().DropDownList()
@@ -53,7 +54,7 @@
 
         </div>
 
-        <div class="col-md-2 mb-3 ">
+        <div class="col-md-3 " id="repDDL">
             <h2>Roster Reports: </h2>
             <p>
                 @(Html.Kendo().DropDownTree()
@@ -116,23 +117,23 @@
                 )
             </p>
             @*<h2>Individual Student Data:</h2>
-            <p>
-                @(Html.Kendo().DropDownList()
-                    .Name("studentInfoDDL")
-                    .HtmlAttributes(new { value = "Individual", Style = "float: left, width:90px; text-align:center" })
-                    .DataTextField("Text")
-                    .DataValueField("Text")
-                    .DataSource(source =>
-                    {
-                        source.Read(read => { read.Action("GetIndiStudentInfo", "Menu"); });
-                    })
-                    .OptionLabel("Select an Option...")
-                    )
-            </p>*@
+                <p>
+                    @(Html.Kendo().DropDownList()
+                        .Name("studentInfoDDL")
+                        .HtmlAttributes(new { value = "Individual", Style = "float: left, width:90px; text-align:center" })
+                        .DataTextField("Text")
+                        .DataValueField("Text")
+                        .DataSource(source =>
+                        {
+                            source.Read(read => { read.Action("GetIndiStudentInfo", "Menu"); });
+                        })
+                        .OptionLabel("Select an Option...")
+                        )
+                </p>*@
 
         </div>
 
-        <div id="studentDDL" class="col-md-3">
+        <div class="col-md-3" id="studentDDL">
             <h2>Students </h2>
             @(Html.Kendo().DropDownList().
                         Name("students")
@@ -151,15 +152,19 @@
                             })
                             .ServerFiltering(false);
                         })
-                        .Events(x => { x.Change("changeStudent");})
-                        .Enable(true)
+                .Events(e =>
+                {
+                    e.Change(("changeStudent"));
+                })
+                .Enable(true)
                         //.CascadeFrom("gradYear")
                         )
 
         </div>
-                
-    </div>    
+
+    </div>
 </div>
+
 <div id="reportDetails">
     <div id="remind">
         <div id="remBoth">Please select a Society and Graduate Year</div>
@@ -209,7 +214,8 @@
     <div class="selectedStudentOptions">
         @*move this to fs div OR attatch it to show only when ddl reps selected*@
         @(Html.Kendo().TabStrip()
-            .Name("studentStatusOptions")
+            .Name("FullSummaryReport")
+            .TabPosition(TabStripTabPosition.Left)
             .Items(x =>
             {
                 x.Add().Text("Student Details")
@@ -233,14 +239,14 @@
                               </text>);
 
 
-                x.Add().Text("Full Summary Details")
-                    .LoadContentFrom(Url.Content("~/Home/ReportDetails"));
+                x.Add().Text("Full Summary Details");
+                // .LoadContentFrom(Url.Content("~/Views/Home/ReportDetails.cshtml"));
 
-                x.Add().Text("Electives Roster")
-                    .LoadContentFrom(Url.Content("~/Home/FoundationBlks"));
+                x.Add().Text("Electives Roster");
+                // .LoadContentFrom(Url.Content("~/Views/Home/FoundationBlks.cshtml"));
 
                 x.Add().Text("Dean Notes")
-                    .LoadContentFrom(Url.Content("~/Home/CATscores"));
+                    .LoadContentFrom("DeanNotes", "FullSummary");
             })
         )
     </div>
@@ -248,11 +254,58 @@
 </div>
 
 
+@*<script id="template" type="text/kendo-tmpl">
+        @(Html.Kendo().Grid<eCurriculumAdmin2014.Areas.MVCArea.Models.Assessment.IndividualComponent>()
+            .Name("SubGrid_#=ID#")
+            .Columns(columns =>
+            {
+                columns.Group(group => group
+                    .Title("Attempts").HeaderHtmlAttributes(new { style = "text-align: center" })
+                    .Columns(sub =>
+                    {
+                        sub.Select().Width(50).HeaderHtmlAttributes(new { style = "text-align: center" });
+                        sub.Bound(c => c.Attempt).Width(900).Title("Attempt \\\\#").HeaderHtmlAttributes(new { style = "text-align: center; background-color: \\#e0e0e0; font-weight: bold" });
+                        sub.Bound(c => c.IsReleased).Width(305).Title("Released?").ClientTemplate("\\#= releasedTemplate(IsReleased) \\#").HeaderHtmlAttributes(new { style = "text-align: center; background-color: \\#e0e0e0; font-weight: bold" });
+                        sub.Bound(c => c.ComponentGrade).Width(194).Title("Grade").ClientTemplate("\\#= gradeTemplate(ComponentGrade) \\#").HeaderHtmlAttributes(new { style = "text-align: center; background-color: \\#e0e0e0; font-weight: bold" });
+                        //sub.Bound(c => c.Details).Title("Details").ClientTemplate("\\#= detailsTemplate(Details) \\#").HeaderHtmlAttributes(new { style = "text-align: center; background-color: \\#e0e0e0; font-weight: bold" });
+
+                    }));
+
+            })
+            .Events(events => events.DataBound("dataBoundSubGrid"))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("AttemptsRead", "IndividualStudent", new { componentID = "#=ComponentID#" }))
+                .Model(model =>
+                {
+                    model.Id(e => e.ID);
+
+                }))
+            .ToClientTemplate()
+            )
+</script>*@
+
+@*<div id="grid-container">
+<div id="details-partial-view">
+    <div class="page-container" id="student-details">
+    </div>
+</div>
+<div id="notes-and-grade-partial-view">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="page-container" id="manager-notes" style="height: 100%;">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="page-container" id="final-grade" style="height: 100%;">
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
 <script>
-    $(function () {
-        $("#remind").show();
-        $("#remBoth").show();
-    })
+
     function GetYear() {
         return {
             classYear: $("#classYear").data("kendoDropDownList").value()
@@ -332,32 +385,33 @@
         console.log(rRep)
     }
 
-    function getStuCaseId() {
+    /*function getStuCaseId() {
         var getStudent = $("#students").data("kendoDropDownList");
         var stuCaseId = getStudent.value();
         $.ajax({
-            url: '@Url.Action("GetStudCaseId", "Grid")',
+
             type: 'GET',
             data: {
                 'studentCaseId': stuCaseId
             },
             dataType: 'json'
         });
-    }
+    }*/
 
     function changeStudent() {
         var stuName = $("#students").data("kendoDropDownList");
-        var selectedStudent = stuName.text();
+        //var selectedStudent = stuName.text();
+        var selectedStudent = stuName.value();
 
         $("#requestInput").hide();
         $('.selectedStudentOptions').show();
         //checkStudentDDL();
         console.log(selectedStudent);
         $.ajax({
-            url: '@Url.Action("SaveSelectedStudent", "Home")',
-            type: 'GET',
+            url: '@Url.Action("SaveStudCaseId", "Grid")',
+            type: 'POST',
             data: {
-                'StudentName': selectedStudent
+                'StudentCaseId': selectedStudent
             },
             dataType: 'json'
         });
@@ -367,10 +421,9 @@
 
 
     function viewReport() {
-        //console.log("viewReport: TopMenu.view")
+
 
         $(".toHide").hide()
-        //checkInput();
 
         var reportDDL = $("#rostReps").data("kendoDropDownTree");
         var rRepVal = reportDDL.value();
@@ -501,31 +554,40 @@
         }
     }
 
+    /*function GetID(){
+        return {
+            stuCaseId:
+        */
+
 </script>
 
 
 
 <style>
-    #reportDetails{
-        display:block;
-        justify-content:center;
+    #reportDetails {
+        display: block;
+        justify-content: center;
     }
-    .headers{
-        display:block;
-        justify-content:center;
-        text-align:center;
+
+    .headers {
+        display: block;
+        justify-content: center;
+        text-align: center;
     }
-    #requestInput{
-        display:none;
-        text-align:center;
+
+    #requestInput {
+        display: none;
+        text-align: center;
     }
+
     #remind {
         display: none;
-        justify-content:center;
+        justify-content: center;
     }
-    #remBoth{
-        display:none;
-        text-align:center;
+
+    #remBoth {
+        display: none;
+        text-align: center;
     }
 
     ul {
@@ -551,6 +613,7 @@
         color: whitesmoke;
         text-align: center;
     }
+
     #selectedStudentOpt {
         display: none;
     }
@@ -645,6 +708,4 @@
         display: none;
         padding-top: 25px;
     }
-
-   
 </style>
